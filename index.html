@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Card - تفعيل بطاقات الصالات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8A6B2A;
+    --navy: #0A1628;
+    --navy-mid: #112240;
+    --navy-light: #1E3A5F;
+    --white: #FAFAF8;
+    --gray-light: #F0EDE8;
+    --gray-mid: #A8A49E;
+    --text-dark: #1A1614;
+    --text-mid: #4A4540;
+    --visa-blue: #1A1F71;
+    --master-red: #EB001B;
+    --master-orange: #F79E1B;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 1000;
+    background: rgba(10, 22, 40, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+
+  .logo-text {
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .logo-text span {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 1.5px;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(250,250,248,0.8);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; right: 0; left: 100%;
+    height: 2px;
+    background: var(--gold);
+    transition: left 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { left: 0; }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 9px 24px;
+    border-radius: 8px;
+    font-weight: 700 !important;
+    transition: background 0.3s, transform 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold-light) !important;
+    transform: translateY(-1px);
+    color: var(--navy) !important;
+  }
+
+  .nav-cta::after { display: none !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8rem 6rem 6rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    padding: 7px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-badge-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: rgba(250,250,248,0.7);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(201,168,76,0.35);
+  }
+
+  .btn-outline {
+    border: 1.5px solid rgba(250,250,248,0.3);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-stat {
+    background: rgba(17,34,64,0.9);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .hero-stat-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(250,250,248,0.6);
+    font-weight: 400;
+  }
+
+  /* HERO VISUAL - بطاقة مطار */
+  .hero-visual {
+    position: relative;
+    animation: fadeIn 1s 0.5s ease both;
+  }
+
+  .lounge-card {
+    background: linear-gradient(135deg, #0A1628 0%, #1E3A5F 100%);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lounge-card::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  }
+
+  .lounge-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .lounge-title {
+    color: var(--gold-light);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .lounge-live {
+    background: rgba(16,185,129,0.15);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: #10B981;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .live-dot {
+    width: 6px; height: 6px;
+    background: #10B981;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+
+  .airport-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .airport-item:last-child { border-bottom: none; }
+
+  .airport-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .visa-icon { background: rgba(26,31,113,0.6); border: 1px solid rgba(26,31,113,0.8); }
+  .master-icon { background: rgba(235,0,27,0.15); border: 1px solid rgba(235,0,27,0.3); }
+
+  .airport-info { flex: 1; }
+
+  .airport-name {
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+
+  .airport-sub {
+    font-size: 11px;
+    color: rgba(250,250,248,0.5);
+  }
+
+  .airport-status {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+
+  .status-active {
+    background: rgba(16,185,129,0.15);
+    color: #10B981;
+    border: 1px solid rgba(16,185,129,0.3);
+  }
+
+  .floating-card {
+    position: absolute;
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 14px;
+    padding: 14px 18px;
+  }
+
+  .fc-1 { top: -25px; left: -25px; animation: float 4s ease-in-out infinite; }
+  .fc-2 { bottom: -25px; right: -25px; animation: float 4s 2s ease-in-out infinite; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .fc-label { font-size: 10px; color: rgba(250,250,248,0.5); margin-bottom: 4px; }
+  .fc-value { font-size: 18px; font-weight: 900; color: var(--gold); font-family: 'Inter', sans-serif; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 6rem; }
+
+  .section-inner { max-width: 1300px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    color: var(--gold-dark);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 5px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .section-title span { color: var(--gold-dark); }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  .section-header { margin-bottom: 4rem; }
+
+  /* ===== SERVICES ===== */
+  .services-bg { background: var(--gray-light); }
+
+  /* خدمة العملاء بطاقة عريضة */
+  .support-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(201,168,76,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .support-banner::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 40%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+
+  .support-left { display: flex; align-items: center; gap: 1.5rem; }
+
+  .support-icon {
+    width: 64px; height: 64px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+
+  .support-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .support-desc {
+    font-size: 14px;
+    color: rgba(250,250,248,0.65);
+    line-height: 1.6;
+    max-width: 450px;
+  }
+
+  .support-channels {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .channel-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .channel-wa {
+    background: #25D366;
+    color: white;
+  }
+
+  .channel-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+  .channel-tg {
+    background: rgba(250,250,248,0.1);
+    color: var(--white);
+    border: 1px solid rgba(250,250,248,0.2);
+  }
+
+  .channel-tg:hover { background: rgba(250,250,248,0.15); transform: translateY(-2px); }
+
+  /* Products Grid */
+  .products-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .products-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(10,22,40,0.12);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 0;
+    border: 1.5px solid rgba(10,22,40,0.08);
+    transition: all 0.35s;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(10,22,40,0.14);
+  }
+
+  /* Visa Card */
+  .product-card.visa-card { border-color: rgba(26,31,113,0.2); }
+  .product-card.visa-card:hover { border-color: rgba(26,31,113,0.4); }
+
+  /* Master Card */
+  .product-card.master-card { border-color: rgba(235,0,27,0.15); }
+  .product-card.master-card:hover { border-color: rgba(235,0,27,0.35); }
+
+  /* Shopping Card */
+  .product-card.shop-card { border-color: rgba(201,168,76,0.25); }
+  .product-card.shop-card:hover { border-color: rgba(201,168,76,0.5); }
+
+  .card-header {
+    padding: 2rem 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .visa-header { background: linear-gradient(135deg, #1A1F71 0%, #2d3599 100%); }
+  .master-header { background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%); }
+  .shop-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
+
+  .card-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .brand-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .brand-logo {
+    font-size: 28px;
+  }
+
+  .master-circles {
+    display: flex;
+    position: relative;
+    width: 52px; height: 32px;
+  }
+
+  .mc-red {
+    width: 32px; height: 32px;
+    background: var(--master-red);
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    opacity: 0.9;
+  }
+
+  .mc-orange {
+    width: 32px; height: 32px;
+    background: var(--master-orange);
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    opacity: 0.9;
+  }
+
+  .card-price-area {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .card-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+  }
+
+  .card-currency {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .card-body {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .card-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 1.75rem;
+  }
+
+  .card-features li {
+    font-size: 13px;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .feat-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: white;
+  }
+
+  .check-blue { background: var(--visa-blue); }
+  .check-red { background: var(--master-red); }
+  .check-gold { background: var(--gold-dark); }
+
+  .card-cta {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Cairo', sans-serif;
+    width: 100%;
+  }
+
+  .cta-visa { background: var(--visa-blue); color: white; }
+  .cta-visa:hover { background: #151a5e; transform: translateY(-1px); }
+
+  .cta-master { background: #1a1a1a; color: white; }
+  .cta-master:hover { background: #000; transform: translateY(-1px); }
+
+  .cta-shop { background: var(--gold); color: var(--navy); }
+  .cta-shop:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .popular-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* WHY US */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .why-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .why-stat-card {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 1.8rem;
+    color: var(--white);
+  }
+
+  .why-stat-card.gold-card {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--navy);
+  }
+
+  .wsc-num {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1;
+  }
+
+  .wsc-label { font-size: 13px; opacity: 0.75; font-weight: 500; }
+
+  .why-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .why-feature {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .why-feature-icon {
+    width: 48px; height: 48px;
+    background: rgba(201,168,76,0.12);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .why-feature h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .why-feature p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* PROCESS */
+  .process-bg { background: var(--navy); }
+  .process-bg .section-title { color: var(--white); }
+  .process-bg .section-tag {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold-light);
+    border-color: rgba(201,168,76,0.3);
+  }
+  .process-bg .section-sub { color: rgba(250,250,248,0.65); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+    margin-top: 1rem;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    right: 10%; left: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+  }
+
+  .process-step { text-align: center; padding: 0 1rem; }
+
+  .step-num {
+    width: 72px; height: 72px;
+    background: rgba(201,168,76,0.15);
+    border: 2px solid rgba(201,168,76,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--gold);
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+
+  .process-step:hover .step-num {
+    background: var(--gold);
+    color: var(--navy);
+    transform: scale(1.1);
+  }
+
+  .process-step h4 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .process-step p { font-size: 13px; color: rgba(250,250,248,0.55); line-height: 1.6; }
+
+  /* CTA CONTACT */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+
+  .cta-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-left .section-title { color: var(--white); }
+  .cta-left .section-sub { color: rgba(250,250,248,0.65); }
+
+  .visa-topics {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 2rem;
+  }
+
+  .visa-topic {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    transition: all 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .visa-topic:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: rgba(201,168,76,0.4);
+    transform: translateX(-4px);
+  }
+
+  .vt-icon {
+    font-size: 22px;
+    width: 40px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .vt-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .vt-arrow {
+    margin-right: auto;
+    color: var(--gold);
+    font-size: 18px;
+  }
+
+  /* Contact Form */
+  .contact-form {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 20px;
+    padding: 2.5rem;
+  }
+
+  .contact-form h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(250,250,248,0.7);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(250,250,248,0.35); }
+
+  .form-group select option { background: var(--navy); color: var(--white); }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
+  }
+
+  .form-submit:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #060D1A;
+    color: rgba(250,250,248,0.6);
+    padding: 4rem 6rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(250,250,248,0.08);
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 1rem 0 1.5rem;
+    max-width: 280px;
+  }
+
+  .footer-social { display: flex; gap: 10px; }
+
+  .social-btn {
+    width: 38px; height: 38px;
+    background: rgba(250,250,248,0.07);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(250,250,248,0.6);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+  }
+
+  .social-btn:hover { background: var(--gold); color: var(--navy); }
+
+  .footer-col h5 { color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 1.5rem; }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-links a {
+    color: rgba(250,250,248,0.55);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-links a::before { content: '›'; color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1300px;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(250,250,248,0.3);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    section { padding: 5rem 3rem; }
+    nav { padding: 0 2rem; }
+    .hero { padding: 8rem 3rem 5rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .process-steps::before { display: none; }
+    .cta-inner { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 4rem 3rem 2rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    nav { padding: 0 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .products-grid, .why-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .support-banner { flex-direction: column; text-align: center; }
+    .support-channels { justify-content: center; }
+    footer { padding: 3rem 1.5rem 2rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-visual { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">DC</div>
+    <div class="logo-text">
+      Digital Card
+      <span>Airport Lounge Access</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">المنتجات</a></li>
+    <li><a href="#why">لماذا نحن</a></li>
+    <li><a href="#process">آلية العمل</a></li>
+    <li><a href="#contact" class="nav-cta">تواصل معنا</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        متخصصون في تفعيل دخول صالات المطارات
+      </div>
+      <h1>
+        ادخل صالات الضيافة
+        <em>بأقل الأسعار!</em>
+      </h1>
+      <p class="hero-desc">
+        Digital Card متخصصة في تفعيل زيارات صالات المطارات عبر <strong style="color:var(--gold-light)">Visa Airport</strong> و<strong style="color:var(--gold-light)">Mastercard Travel Pass</strong> — احصل على دخول صالات الضيافة حول العالم بأسعار لا تُنافَس وبكل سهولة.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">اكتشف المنتجات ←</a>
+        <a href="#contact" class="btn-outline">💬 تواصل معنا</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">1,300+</div>
+          <div class="hero-stat-label">صالة حول العالم</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">$1</div>
+          <div class="hero-stat-label">أقل سعر للزيارة</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">24/7</div>
+          <div class="hero-stat-label">دعم مستمر</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="floating-card fc-1">
+        <div class="fc-label">صالات متاحة</div>
+        <div class="fc-value">1,300+ ✈️</div>
+      </div>
+
+      <div class="lounge-card">
+        <div class="lounge-header">
+          <div class="lounge-title">✈ Airport Lounge Access</div>
+          <div class="lounge-live"><div class="live-dot"></div> نشط الآن</div>
+        </div>
+
+        <div class="airport-item">
+          <div class="airport-icon visa-icon">
+            <span style="font-family:'Inter',sans-serif; font-size:14px; font-weight:900; color:white;">VISA</span>
+          </div>
+          <div class="airport-info">
+            <div class="airport-name">Visa Airport Companion</div>
+            <div class="airport-sub">تفعيل دخول صالات الفيزا</div>
+          </div>
+          <div class="airport-status status-active">$100</div>
+        </div>
+
+        <div class="airport-item">
+          <div class="airport-icon master-icon">
+            <div class="master-circles" style="width:38px;height:24px;">
+              <div class="mc-red" style="width:24px;height:24px;"></div>
+              <div class="mc-orange" style="width:24px;height:24px;left:14px;"></div>
+            </div>
+          </div>
+          <div class="airport-info">
+            <div class="airport-name">Mastercard Travel Pass</div>
+            <div class="airport-sub">تفعيل صالات ماستركارد</div>
+          </div>
+          <div class="airport-status status-active">$5</div>
+        </div>
+
+        <div class="airport-item">
+          <div class="airport-icon" style="background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3);">🛍️</div>
+          <div class="airport-info">
+            <div class="airport-name">مشتريات رصيد</div>
+            <div class="airport-sub">شراء عبر رصيد البطاقة</div>
+          </div>
+          <div class="airport-status status-active">$1</div>
+        </div>
+      </div>
+
+      <div class="floating-card fc-2">
+        <div class="fc-label">آخر تفعيل</div>
+        <div class="fc-value">منذ 3 دقائق ⚡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">خدماتنا</div>
+      <h2 class="section-title">خدمة العملاء <span>والمنتجات المتاحة</span></h2>
+      <p class="section-sub">نوفر دعماً متواصلاً ومنتجات متنوعة تناسب احتياجاتك للوصول إلى صالات المطارات حول العالم.</p>
+    </div>
+
+    <!-- خدمة العملاء -->
+    <div class="support-banner">
+      <div class="support-left">
+        <div class="support-icon">🎧</div>
+        <div>
+          <div class="support-title">خدمة العملاء — 24/7</div>
+          <div class="support-desc">فريقنا متاح على مدار الساعة للإجابة على جميع استفساراتك حول تفعيل بطاقات الصالات، وحل أي مشكلة بسرعة واحترافية.</div>
+        </div>
+      </div>
+      <div class="support-channels">
+        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20خدمات%20Digital%20Card" target="_blank" class="channel-btn channel-wa">
+          <span>💬</span> واتساب
+        </a>
+        <a href="mailto:salam6169@gmail.com?subject=استفسار%20من%20موقع%20Digital%20Card" class="channel-btn channel-tg">
+          <span>✉️</span> البريد
+        </a>
+      </div>
+    </div>
+
+    <!-- المنتجات -->
+    <div class="products-title">🛒 المنتجات</div>
+    <div class="products-grid">
+
+      <!-- Visa -->
+      <div class="product-card visa-card">
+        <div class="card-header visa-header">
+          <div class="popular-badge">⭐ الأكثر طلباً</div>
+          <div class="card-brand">
+            <div class="brand-name" style="font-size:28px; letter-spacing:-1px;">VISA</div>
+            <div style="font-size:30px;">✈️</div>
+          </div>
+          <div class="card-price-area">
+            <div class="card-price">100</div>
+            <div class="card-currency">$</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Visa Airport Companion</div>
+          <div class="card-desc">تفعيل تطبيق Visa Airport Companion للدخول إلى صالات الضيافة الحصرية في المطارات حول العالم.</div>
+          <ul class="card-features">
+            <li><span class="feat-check check-blue">✓</span> دخول +1,300 صالة عالمياً</li>
+            <li><span class="feat-check check-blue">✓</span> تفعيل فوري عبر التطبيق</li>
+            <li><span class="feat-check check-blue">✓</span> دخول مجاني + ضيف واحد</li>
+            <li><span class="feat-check check-blue">✓</span> يشمل مطارات السعودية والخليج</li>
+          </ul>
+          <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20تفعيل%20Visa%20Airport%20Companion%20-%20$100" target="_blank" class="card-cta cta-visa">فعّل الآن ←</a>
+        </div>
+      </div>
+
+      <!-- Mastercard -->
+      <div class="product-card master-card">
+        <div class="card-header master-header">
+          <div class="card-brand">
+            <div class="brand-name">Mastercard</div>
+            <div class="master-circles">
+              <div class="mc-red"></div>
+              <div class="mc-orange"></div>
+            </div>
+          </div>
+          <div class="card-price-area">
+            <div class="card-price">5</div>
+            <div class="card-currency">$</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Mastercard Travel Pass</div>
+          <div class="card-desc">تفعيل خدمة Mastercard Travel Pass للوصول إلى صالات الاسترخاء في المطارات الدولية بسعر مميز.</div>
+          <ul class="card-features">
+            <li><span class="feat-check check-red">✓</span> دخول صالات ماستركارد العالمية</li>
+            <li><span class="feat-check check-red">✓</span> تفعيل خلال دقائق</li>
+            <li><span class="feat-check check-red">✓</span> سعر اقتصادي منخفض</li>
+            <li><span class="feat-check check-red">✓</span> مناسب للسفر المتكرر</li>
+          </ul>
+          <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20تفعيل%20Mastercard%20Travel%20Pass%20-%20$5" target="_blank" class="card-cta cta-master">فعّل الآن ←</a>
+        </div>
+      </div>
+
+      <!-- مشتريات -->
+      <div class="product-card shop-card">
+        <div class="card-header shop-header">
+          <div class="card-brand">
+            <div class="brand-name" style="font-family:'Cairo',sans-serif; font-size:20px;">مشتريات</div>
+            <div style="font-size:30px;">🛍️</div>
+          </div>
+          <div class="card-price-area">
+            <div class="card-price">1</div>
+            <div class="card-currency">$</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">مشتريات برصيد البطاقة</div>
+          <div class="card-desc">شراء منتجات ورصيد متنوع باستخدام رصيد بطاقتك بأقل تكلفة ممكنة وبكل سهولة وأمان.</div>
+          <ul class="card-features">
+            <li><span class="feat-check check-gold">✓</span> أقل سعر في السوق</li>
+            <li><span class="feat-check check-gold">✓</span> معاملات آمنة ومضمونة</li>
+            <li><span class="feat-check check-gold">✓</span> خيارات متعددة للمنتجات</li>
+            <li><span class="feat-check check-gold">✓</span> دعم فوري عند الحاجة</li>
+          </ul>
+          <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20المشتريات%20-%20$1" target="_blank" class="card-cta cta-shop">اطلب الآن ←</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-visual">
+        <div class="why-stat-card gold-card">
+          <div class="wsc-num">1,300+</div>
+          <div class="wsc-label">صالة مطار عالمياً</div>
+        </div>
+        <div class="why-stat-card">
+          <div class="wsc-num">$1</div>
+          <div class="wsc-label" style="color:var(--gold-light)">أقل سعر متاح</div>
+        </div>
+        <div class="why-stat-card">
+          <div class="wsc-num">دقائق</div>
+          <div class="wsc-label" style="color:var(--gold-light)">وقت التفعيل</div>
+        </div>
+        <div class="why-stat-card gold-card">
+          <div class="wsc-num">24/7</div>
+          <div class="wsc-label">دعم مستمر</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-tag">لماذا نحن</div>
+        <h2 class="section-title">الموقع الأول <span>لتفعيل صالات المطارات</span></h2>
+        <p class="section-sub" style="margin-bottom: 2rem;">متخصصون في تفعيل زيارات صالات الضيافة عبر Visa Airport وMastercard Travel Pass — بأسرع تفعيل وأوفر سعر.</p>
+
+        <div class="why-features">
+          <div class="why-feature">
+            <div class="why-feature-icon">⚡</div>
+            <div>
+              <h4>تفعيل فوري خلال دقائق</h4>
+              <p>بمجرد استلام طلبك نبدأ التفعيل فوراً — لا انتظار ولا تأخير، ستكون جاهزاً قبل رحلتك بوقت كافٍ.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">💰</div>
+            <div>
+              <h4>أسعار لا تُنافَس</h4>
+              <p>نوفر أقل الأسعار في السوق لتفعيل بطاقات الصالات — من دولار واحد فقط دون أي رسوم خفية.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">🛡️</div>
+            <div>
+              <h4>موثوق وآمن 100%</h4>
+              <p>جميع عملياتنا آمنة وموثوقة، ونضمن حماية بياناتك وإتمام التفعيل بنجاح في كل مرة.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon">🌍</div>
+            <div>
+              <h4>تغطية عالمية شاملة</h4>
+              <p>أكثر من 1,300 صالة ضيافة حول العالم تشمل مطارات المملكة العربية السعودية وجميع دول الخليج والعالم.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-bg" id="process">
+  <div class="section-inner">
+    <div class="section-header" style="text-align: center; max-width: 600px; margin: 0 auto 4rem;">
+      <div class="section-tag">آلية العمل</div>
+      <h2 class="section-title">كيف <span style="color:var(--gold)">تفعّل بطاقتك؟</span></h2>
+      <p class="section-sub" style="margin: 0 auto;">عملية بسيطة من 5 خطوات تضمن لك دخول الصالة بكل سهولة وراحة.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h4>اختر المنتج</h4>
+        <p>اختر بين Visa Airport أو Mastercard Travel Pass أو المشتريات</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h4>تواصل معنا</h4>
+        <p>أرسل طلبك عبر واتساب أو تيليغرام أو نموذج الموقع</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h4>أرسل البيانات</h4>
+        <p>أرسل البيانات المطلوبة لإتمام عملية التفعيل بأمان</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h4>التفعيل الفوري</h4>
+        <p>نُفعّل بطاقتك خلال دقائق ونرسل لك تأكيد التفعيل</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <h4>ادخل الصالة 🛫</h4>
+        <p>توجّه إلى الصالة واستمتع بتجربة سفر استثنائية</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA & CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="section-tag" style="background: rgba(201,168,76,0.15); color: var(--gold-light); border-color: rgba(201,168,76,0.3);">تواصل معنا</div>
+      <h2 class="section-title">لديك سؤال عن <span style="color:var(--gold)">بطاقتك؟</span></h2>
+      <p class="section-sub">نحن هنا للإجابة على جميع استفساراتك المتعلقة ببطاقات الفيزا والماستركارد وتفعيل الصالات. اختر موضوعك:</p>
+
+      <div class="visa-topics">
+        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20تفعيل%20Visa%20Airport%20Companion" target="_blank" class="visa-topic">
+          <div class="vt-icon">✈️</div>
+          <div class="vt-text">تفعيل Visa Airport Companion</div>
+          <div class="vt-arrow">←</div>
+        </a>
+        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20تفعيل%20Mastercard%20Travel%20Pass" target="_blank" class="visa-topic">
+          <div class="vt-icon">🃏</div>
+          <div class="vt-text">تفعيل Mastercard Travel Pass</div>
+          <div class="vt-arrow">←</div>
+        </a>
+        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20الصالات%20المتاحة%20في%20المطارات" target="_blank" class="visa-topic">
+          <div class="vt-icon">🏛️</div>
+          <div class="vt-text">الاستعلام عن الصالات المتاحة</div>
+          <div class="vt-arrow">←</div>
+        </a>
+        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20المشتريات%20برصيد%20البطاقة" target="_blank" class="visa-topic">
+          <div class="vt-icon">🛍️</div>
+          <div class="vt-text">المشتريات برصيد البطاقة</div>
+          <div class="vt-arrow">←</div>
+        </a>
+        <a href="https://wa.me/966581435538?text=مرحباً،%20لدي%20مشكلة%20في%20التفعيل%20أو%20الدخول%20للصالة" target="_blank" class="visa-topic">
+          <div class="vt-icon">🔧</div>
+          <div class="vt-text">مشكلة في التفعيل أو الدخول</div>
+          <div class="vt-arrow">←</div>
+        </a>
+        <a href="https://wa.me/966581435538?text=مرحباً،%20لدي%20استفسار%20عن%20خدمات%20Digital%20Card" target="_blank" class="visa-topic">
+          <div class="vt-icon">💬</div>
+          <div class="vt-text">استفسار عام عن الخدمة</div>
+          <div class="vt-arrow">←</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>📩 أرسل استفسارك</h3>
+      <form id="contact-form" action="https://formspree.io/f/mnjwrolj" method="POST">
+        <div class="form-group">
+          <label>الاسم</label>
+          <input type="text" name="الاسم" id="f-name" placeholder="اسمك الكريم" required>
+        </div>
+        <div class="form-group">
+          <label>رقم الجوال / واتساب</label>
+          <input type="tel" name="الجوال" id="f-phone" placeholder="+966 5X XXX XXXX">
+        </div>
+        <div class="form-group">
+          <label>موضوع الاستفسار</label>
+          <select name="الموضوع" id="f-subject" required>
+            <option value="">اختر الموضوع...</option>
+            <option>تفعيل Visa Airport Companion</option>
+            <option>تفعيل Mastercard Travel Pass</option>
+            <option>الاستعلام عن الصالات المتاحة</option>
+            <option>المشتريات برصيد البطاقة</option>
+            <option>مشكلة في التفعيل أو الدخول</option>
+            <option>استفسار عام</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>تفاصيل الاستفسار</label>
+          <textarea name="التفاصيل" id="f-msg" placeholder="اشرح استفسارك أو طلبك بالتفصيل..."></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="طلب جديد من موقع Digital Card">
+        <input type="hidden" name="_language" value="ar">
+        <button type="submit" class="form-submit" id="submit-btn">إرسال الاستفسار ←</button>
+      </form>
+      <div id="form-success" style="display:none; text-align:center; padding:1.5rem; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); border-radius:12px; margin-top:1rem;">
+        <div style="font-size:2rem; margin-bottom:8px;">✅</div>
+        <div style="color:#10B981; font-size:16px; font-weight:700;">تم إرسال استفسارك بنجاح!</div>
+        <div style="color:rgba(250,250,248,0.6); font-size:13px; margin-top:4px;">سنتواصل معك قريباً على واتساب أو البريد</div>
+      </div>
+      <div style="text-align:center; margin-top:14px; display:flex; gap:10px; justify-content:center;">
+        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20خدمات%20Digital%20Card" target="_blank" style="color:#25D366; font-size:13px; text-decoration:none; display:flex; align-items:center; gap:4px;">💬 أو تواصل عبر واتساب</a>
+        <span style="color:rgba(250,250,248,0.3);">|</span>
+        <a href="mailto:salam6169@gmail.com" style="color:var(--gold-light); font-size:13px; text-decoration:none;">✉️ البريد الإلكتروني</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom: 0.75rem;">
+        <div class="logo-icon">DC</div>
+        <div class="logo-text">Digital Card<span>Airport Lounge Access</span></div>
+      </div>
+      <p>متخصصون في تفعيل زيارات صالات الضيافة في المطارات عبر Visa Airport وMastercard Travel Pass بأسعار لا تُنافَس.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">wa</a>
+        <a href="#" class="social-btn">tg</a>
+        <a href="#" class="social-btn">tw</a>
+        <a href="#" class="social-btn">in</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>المنتجات</h5>
+      <ul class="footer-links">
+        <li><a href="#">Visa Airport - $100</a></li>
+        <li><a href="#">Mastercard Travel Pass - $5</a></li>
+        <li><a href="#">مشتريات - $1</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>الدعم</h5>
+      <ul class="footer-links">
+        <li><a href="#">خدمة العملاء</a></li>
+        <li><a href="#">الأسئلة الشائعة</a></li>
+        <li><a href="#">الصالات المتاحة</a></li>
+        <li><a href="#">تتبع طلبك</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>الشركة</h5>
+      <ul class="footer-links">
+        <li><a href="#">من نحن</a></li>
+        <li><a href="#">سياسة الخصوصية</a></li>
+        <li><a href="#">الشروط والأحكام</a></li>
+        <li><a href="#">تواصل معنا</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Digital Card. جميع الحقوق محفوظة.</span>
+    <span>Visa Airport • Mastercard Travel Pass</span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.4)' : 'none';
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.product-card, .why-feature, .process-step, .visa-topic').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    observer.observe(el);
+  });
+
+  // Formspree - إرسال بدون إعادة تحميل الصفحة
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = '⏳ جاري الإرسال...';
+      btn.disabled = true;
+
+      try {
+        const response = await fetch('https://formspree.io/f/mnjwrolj', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          btn.textContent = '❌ حدث خطأ، حاول مجدداً';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = '❌ تحقق من الاتصال وأعد المحاولة';
+        btn.disabled = false;
+      }
+    });
+  }
+</script>
+</body>
+</html>
