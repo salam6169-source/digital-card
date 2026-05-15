@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Card - تفعيل بطاقات الصالات</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1129,6 +1130,269 @@
     .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
     .hero-visual { display: none; }
   }
+
+
+/* ========== LANGUAGE TOGGLE ========== */
+.lang-btn {
+  background: transparent;
+  border: 1.5px solid rgba(201,168,76,0.5);
+  color: var(--gold-light);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 12px;
+  letter-spacing: 0.5px;
+}
+.lang-btn:hover {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ========== PROFILE PAGE ========== */
+#profile {
+  padding: 120px 0 80px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0d1e3d 100%);
+  min-height: 100vh;
+  display: none;
+}
+#profile.active { display: block; }
+
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--navy);
+  flex-shrink: 0;
+  border: 3px solid rgba(201,168,76,0.4);
+  box-shadow: 0 0 30px rgba(201,168,76,0.2);
+}
+
+.profile-info h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.profile-info .profile-id {
+  color: var(--gold-light);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.profile-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(34,197,94,0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34,197,94,0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.profile-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.profile-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: border-color 0.3s;
+}
+.profile-card:hover { border-color: rgba(201,168,76,0.4); }
+
+.profile-card-title {
+  font-size: 0.8rem;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.profile-card-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.profile-card-value.gold { color: var(--gold-light); }
+
+.membership-bar-wrap {
+  margin-top: 0.8rem;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  height: 8px;
+  overflow: hidden;
+}
+.membership-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+/* QR Section */
+.qr-section {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.qr-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+.qr-sub {
+  color: var(--gray-mid);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+.qr-code-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(201,168,76,0.25);
+  margin-bottom: 1rem;
+}
+#qrcode canvas, #qrcode img { display: block; }
+
+.qr-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--navy);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+.qr-download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,168,76,0.4);
+}
+
+/* Visit History */
+.visit-history {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.visit-history-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+.visit-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.visit-item:last-child { border-bottom: none; }
+.visit-date { color: var(--gray-mid); font-size: 0.85rem; }
+.visit-lounge { color: var(--white); font-size: 0.9rem; font-weight: 600; }
+.visit-badge {
+  background: rgba(201,168,76,0.15);
+  color: var(--gold-light);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Profile Nav Link */
+.nav-profile-btn {
+  background: rgba(201,168,76,0.12);
+  border: 1.5px solid rgba(201,168,76,0.4);
+  color: var(--gold-light);
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-profile-btn:hover {
+  background: rgba(201,168,76,0.25);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .profile-grid { grid-template-columns: 1fr; }
+  .profile-header { flex-direction: column; text-align: center; }
+}
 </style>
 </head>
 <body>
@@ -1148,7 +1412,16 @@
     <li><a href="#process">آلية العمل</a></li>
     <li><a href="#contact" class="nav-cta">تواصل معنا</a></li>
   </ul>
-</nav>
+
+    <li>
+      <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
+    </li>
+    <li>
+      <a href="#" class="nav-profile-btn" onclick="showProfile(event)">
+        <span>👤</span> <span data-ar="ملف العضو" data-en="My Profile">ملف العضو</span>
+      </a>
+    </li>
+  </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -1543,6 +1816,91 @@
   </div>
 </section>
 
+<!-- ========== PROFILE SECTION ========== -->
+<section id="profile">
+  <div class="profile-container">
+
+    <div class="profile-header">
+      <div class="profile-avatar" id="profileAvatar">أح</div>
+      <div class="profile-info">
+        <h2 id="profileName">أحمد محمد الراشد</h2>
+        <div class="profile-id" id="profileIdDisplay">رقم العضوية: DC-2024-00847</div>
+        <span class="profile-status" data-ar="نشط" data-en="Active">نشط</span>
+      </div>
+    </div>
+
+    <div class="profile-grid">
+      <div class="profile-card">
+        <div class="profile-card-title" data-ar="نوع الاشتراك" data-en="Membership Type">نوع الاشتراك</div>
+        <div class="profile-card-value gold" data-ar="بلاتيني — سنوي" data-en="Platinum — Annual">بلاتيني — سنوي</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-title" data-ar="تاريخ الانضمام" data-en="Join Date">تاريخ الانضمام</div>
+        <div class="profile-card-value">15 يناير 2024</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-title" data-ar="تاريخ الانتهاء" data-en="Expiry Date">تاريخ الانتهاء</div>
+        <div class="profile-card-value">15 يناير 2025</div>
+        <div class="membership-bar-wrap">
+          <div class="membership-bar" style="width: 62%"></div>
+        </div>
+        <div style="font-size:0.75rem; color: var(--gray-mid); margin-top:6px;" data-ar="62% من مدة الاشتراك مكتملة" data-en="62% of membership completed">62% من مدة الاشتراك مكتملة</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-title" data-ar="زيارات الصالات" data-en="Lounge Visits">زيارات الصالات</div>
+        <div class="profile-card-value gold">18 <span style="font-size:0.9rem;color:var(--gray-mid);" data-ar="زيارة هذا العام" data-en="visits this year">زيارة هذا العام</span></div>
+      </div>
+    </div>
+
+    <!-- QR Code -->
+    <div class="qr-section">
+      <div class="qr-title" data-ar="بطاقتك الرقمية — QR Code" data-en="Your Digital Card — QR Code">بطاقتك الرقمية — QR Code</div>
+      <div class="qr-sub" data-ar="أرِ هذا الرمز عند الدخول إلى أي صالة مشمولة" data-en="Show this code when entering any covered lounge">أرِ هذا الرمز عند الدخول إلى أي صالة مشمولة</div>
+      <div class="qr-code-box">
+        <div id="qrcode"></div>
+      </div>
+      <br>
+      <button class="qr-download-btn" onclick="downloadQR()">
+        ⬇ <span data-ar="تحميل QR Code" data-en="Download QR Code">تحميل QR Code</span>
+      </button>
+    </div>
+
+    <!-- Visit History -->
+    <div class="visit-history">
+      <div class="visit-history-title" data-ar="📋 سجل الزيارات الأخيرة" data-en="📋 Recent Visit History">📋 سجل الزيارات الأخيرة</div>
+      <div class="visit-item">
+        <div>
+          <div class="visit-lounge" data-ar="صالة الرياض — مطار الملك خالد" data-en="Riyadh Lounge — King Khalid Airport">صالة الرياض — مطار الملك خالد</div>
+          <div class="visit-date">12 مايو 2024</div>
+        </div>
+        <span class="visit-badge">✓ مدخل</span>
+      </div>
+      <div class="visit-item">
+        <div>
+          <div class="visit-lounge" data-ar="صالة جدة — مطار الملك عبدالعزيز" data-en="Jeddah Lounge — King Abdulaziz Airport">صالة جدة — مطار الملك عبدالعزيز</div>
+          <div class="visit-date">28 أبريل 2024</div>
+        </div>
+        <span class="visit-badge">✓ مدخل</span>
+      </div>
+      <div class="visit-item">
+        <div>
+          <div class="visit-lounge" data-ar="صالة دبي — مطار دبي الدولي" data-en="Dubai Lounge — Dubai International Airport">صالة دبي — مطار دبي الدولي</div>
+          <div class="visit-date">10 أبريل 2024</div>
+        </div>
+        <span class="visit-badge">✓ مدخل</span>
+      </div>
+      <div class="visit-item">
+        <div>
+          <div class="visit-lounge" data-ar="صالة الدوحة — مطار حمد الدولي" data-en="Doha Lounge — Hamad International Airport">صالة الدوحة — مطار حمد الدولي</div>
+          <div class="visit-date">2 مارس 2024</div>
+        </div>
+        <span class="visit-badge">✓ مدخل</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1651,6 +2009,115 @@
       }
     });
   }
+
+
+// ========== LANGUAGE SYSTEM ==========
+let currentLang = 'ar';
+
+function toggleLang() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  const btn = document.getElementById('langToggle');
+  const html = document.documentElement;
+  
+  if (currentLang === 'en') {
+    html.setAttribute('lang', 'en');
+    html.setAttribute('dir', 'ltr');
+    btn.textContent = 'عر';
+    document.title = 'Digital Card - Airport Lounge Access';
+  } else {
+    html.setAttribute('lang', 'ar');
+    html.setAttribute('dir', 'rtl');
+    btn.textContent = 'EN';
+    document.title = 'Digital Card - تفعيل بطاقات الصالات';
+  }
+  
+  // Update all elements with data-ar / data-en
+  document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+    el.textContent = currentLang === 'ar' ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+  });
+}
+
+// ========== PROFILE PAGE ==========
+function showProfile(e) {
+  if (e) e.preventDefault();
+  
+  // Hide main content sections
+  ['home','services','why','process','contact'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  
+  // Show profile
+  const profile = document.getElementById('profile');
+  if (profile) {
+    profile.classList.add('active');
+    profile.style.display = 'block';
+  }
+  
+  // Generate QR Code
+  generateQR();
+  
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function hideProfile() {
+  ['home','services','why','process','contact'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = '';
+  });
+  const profile = document.getElementById('profile');
+  if (profile) {
+    profile.classList.remove('active');
+    profile.style.display = 'none';
+  }
+}
+
+// ========== QR CODE SYSTEM ==========
+let qrInstance = null;
+
+function generateQR() {
+  const qrContainer = document.getElementById('qrcode');
+  if (!qrContainer) return;
+  qrContainer.innerHTML = '';
+  
+  const memberData = JSON.stringify({
+    id: 'DC-2024-00847',
+    name: 'أحمد محمد الراشد',
+    type: 'Platinum',
+    expiry: '2025-01-15',
+    valid: true
+  });
+  
+  try {
+    qrInstance = new QRCode(qrContainer, {
+      text: memberData,
+      width: 200,
+      height: 200,
+      colorDark: '#0A1628',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  } catch(e) {
+    qrContainer.innerHTML = '<div style="padding:20px;color:#888;font-size:13px;">QR Code غير متاح في هذا المتصفح</div>';
+  }
+}
+
+function downloadQR() {
+  const canvas = document.querySelector('#qrcode canvas');
+  if (!canvas) return;
+  const link = document.createElement('a');
+  link.download = 'digital-card-DC-2024-00847.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+// Handle nav links to show main page
+document.querySelectorAll('nav a:not(.nav-profile-btn)').forEach(link => {
+  link.addEventListener('click', function() {
+    hideProfile();
+  });
+});
 </script>
 </body>
 </html>
