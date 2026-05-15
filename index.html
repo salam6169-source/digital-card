@@ -1393,6 +1393,193 @@
   .profile-grid { grid-template-columns: 1fr; }
   .profile-header { flex-direction: column; text-align: center; }
 }
+
+
+/* ========== PAYMENT METHODS SECTION ========== */
+#payment-methods {
+  padding: 80px 0;
+  background: var(--navy);
+  border-top: 1px solid rgba(201,168,76,0.15);
+}
+
+.payment-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.payment-header {
+  margin-bottom: 3rem;
+}
+
+.payment-tag {
+  display: inline-block;
+  background: rgba(201,168,76,0.12);
+  color: var(--gold-light);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.payment-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.payment-title span { color: var(--gold-light); }
+
+.payment-sub {
+  color: rgba(250,250,248,0.55);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Payment Categories */
+.payment-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.payment-category-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.payment-category-title::before,
+.payment-category-title::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: rgba(201,168,76,0.3);
+}
+
+.payment-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Individual Payment Method Card */
+.pay-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 110px;
+  transition: all 0.3s;
+  cursor: default;
+}
+.pay-card:hover {
+  background: rgba(201,168,76,0.08);
+  border-color: rgba(201,168,76,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.pay-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.pay-icon-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+.pay-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(250,250,248,0.75);
+  letter-spacing: 0.3px;
+}
+
+/* Special styles per method */
+.pay-card.apple { border-color: rgba(255,255,255,0.15); }
+.pay-card.apple:hover { border-color: rgba(255,255,255,0.5); }
+.pay-card.samsung { border-color: rgba(20,120,200,0.2); }
+.pay-card.samsung:hover { border-color: rgba(20,120,200,0.6); }
+.pay-card.stc { border-color: rgba(110,60,180,0.2); }
+.pay-card.stc:hover { border-color: rgba(110,60,180,0.6); }
+.pay-card.mada { border-color: rgba(0,160,100,0.2); }
+.pay-card.mada:hover { border-color: rgba(0,160,100,0.6); }
+.pay-card.visa-pay { border-color: rgba(26,31,113,0.4); }
+.pay-card.visa-pay:hover { border-color: rgba(100,130,255,0.6); }
+.pay-card.master-pay { border-color: rgba(235,0,27,0.2); }
+.pay-card.master-pay:hover { border-color: rgba(235,0,27,0.5); }
+.pay-card.tamara { border-color: rgba(50,200,100,0.2); }
+.pay-card.tamara:hover { border-color: rgba(50,200,100,0.5); }
+.pay-card.tabby { border-color: rgba(100,220,120,0.2); }
+.pay-card.tabby:hover { border-color: rgba(100,220,120,0.5); }
+.pay-card.googlepay { border-color: rgba(66,133,244,0.2); }
+.pay-card.googlepay:hover { border-color: rgba(66,133,244,0.5); }
+.pay-card.paypal { border-color: rgba(0,112,186,0.2); }
+.pay-card.paypal:hover { border-color: rgba(0,112,186,0.5); }
+
+/* USD Notice Banner */
+.usd-notice {
+  margin-top: 2.5rem;
+  background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(201,168,76,0.05) 100%);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 14px;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.usd-notice-icon { font-size: 1.5rem; }
+.usd-notice-text {
+  color: rgba(250,250,248,0.75);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.usd-notice-text strong { color: var(--gold-light); }
+
+/* Security Badges */
+.security-badges {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.sec-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(250,250,248,0.5);
+  font-size: 0.8rem;
+}
+.sec-badge-icon { font-size: 1.1rem; }
+
+@media (max-width: 768px) {
+  .payment-title { font-size: 1.5rem; }
+  .pay-card { min-width: 90px; padding: 0.8rem 1rem; }
+}
 </style>
 </head>
 <body>
@@ -1420,6 +1607,10 @@
       <a href="#" class="nav-profile-btn" onclick="showProfile(event)">
         <span>👤</span> <span data-ar="ملف العضو" data-en="My Profile">ملف العضو</span>
       </a>
+    </li>
+  
+    <li>
+      <span style="color:var(--gold-light);font-size:12px;font-weight:700;border:1px solid rgba(201,168,76,0.4);padding:4px 10px;border-radius:12px;letter-spacing:0.5px;">💵 USD</span>
     </li>
   </nav>
 
@@ -1902,6 +2093,125 @@
 </section>
 
 <!-- FOOTER -->
+
+
+<!-- ========== PAYMENT METHODS SECTION ========== -->
+<section id="payment-methods">
+  <div class="payment-inner">
+
+    <div class="payment-header">
+      <div class="payment-tag" data-ar="طرق الدفع" data-en="Payment Methods">طرق الدفع</div>
+      <h2 class="payment-title">ادفع بالطريقة <span>التي تناسبك</span></h2>
+      <p class="payment-sub" data-ar="جميع المدفوعات بالدولار الأمريكي — نقبل أحدث وسائل الدفع المعتمدة في المملكة العربية السعودية والعالم" data-en="All payments in USD — We accept the latest payment methods approved in Saudi Arabia and worldwide">جميع المدفوعات بالدولار الأمريكي — نقبل أحدث وسائل الدفع المعتمدة في المملكة العربية السعودية والعالم</p>
+    </div>
+
+    <div class="payment-categories">
+
+      <!-- دفع فوري -->
+      <div>
+        <div class="payment-category-title" data-ar="دفع فوري بالجوال" data-en="Instant Mobile Payment">دفع فوري بالجوال</div>
+        <div class="payment-grid">
+
+          <div class="pay-card apple">
+            <div class="pay-icon">🍎</div>
+            <div class="pay-name">Apple Pay</div>
+          </div>
+
+          <div class="pay-card samsung">
+            <div class="pay-icon">🌀</div>
+            <div class="pay-name">Samsung Pay</div>
+          </div>
+
+          <div class="pay-card googlepay">
+            <div class="pay-icon">🔵</div>
+            <div class="pay-name">Google Pay</div>
+          </div>
+
+          <div class="pay-card stc">
+            <div class="pay-icon">💜</div>
+            <div class="pay-name">STC Pay</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- بطاقات بنكية -->
+      <div>
+        <div class="payment-category-title" data-ar="بطاقات بنكية" data-en="Bank Cards">بطاقات بنكية</div>
+        <div class="payment-grid">
+
+          <div class="pay-card visa-pay">
+            <div class="pay-icon" style="font-size:1.4rem; font-weight:900; color:#1a73e8; letter-spacing:-1px;">VISA</div>
+            <div class="pay-name">Visa</div>
+          </div>
+
+          <div class="pay-card master-pay">
+            <div class="pay-icon">🔴🟠</div>
+            <div class="pay-name">Mastercard</div>
+          </div>
+
+          <div class="pay-card mada">
+            <div class="pay-icon" style="font-size:1.1rem; font-weight:900; color:#00a064;">mada</div>
+            <div class="pay-name">مدى — Mada</div>
+          </div>
+
+          <div class="pay-card paypal">
+            <div class="pay-icon" style="font-size:1.3rem; font-weight:900; color:#003087;">PP</div>
+            <div class="pay-name">PayPal</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- تقسيط بدون فوائد -->
+      <div>
+        <div class="payment-category-title" data-ar="تقسيط بدون فوائد — BNPL" data-en="Buy Now Pay Later — BNPL">تقسيط بدون فوائد — BNPL</div>
+        <div class="payment-grid">
+
+          <div class="pay-card tamara">
+            <div class="pay-icon">🟢</div>
+            <div class="pay-name">Tamara تمارا</div>
+          </div>
+
+          <div class="pay-card tabby">
+            <div class="pay-icon">🟩</div>
+            <div class="pay-name">Tabby تابي</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- USD Notice -->
+    <div class="usd-notice">
+      <span class="usd-notice-icon">💵</span>
+      <div class="usd-notice-text" data-ar="جميع الأسعار والمدفوعات بالدولار الأمريكي ($) — سعر الصرف يُحتسب تلقائياً عند الدفع عبر بطاقتك البنكية أو محفظتك الإلكترونية" data-en="All prices and payments are in US Dollars ($) — Exchange rate is calculated automatically when paying via your bank card or digital wallet">جميع الأسعار والمدفوعات بالدولار الأمريكي ($) — سعر الصرف يُحتسب تلقائياً عند الدفع عبر بطاقتك البنكية أو محفظتك الإلكترونية</div>
+    </div>
+
+    <!-- Security Badges -->
+    <div class="security-badges">
+      <div class="sec-badge">
+        <span class="sec-badge-icon">🔒</span>
+        <span data-ar="دفع آمن 100%" data-en="100% Secure Payment">دفع آمن 100%</span>
+      </div>
+      <div class="sec-badge">
+        <span class="sec-badge-icon">🛡️</span>
+        <span data-ar="حماية SSL" data-en="SSL Protection">حماية SSL</span>
+      </div>
+      <div class="sec-badge">
+        <span class="sec-badge-icon">✅</span>
+        <span data-ar="معتمد بالمملكة العربية السعودية" data-en="Approved in Saudi Arabia">معتمد بالمملكة العربية السعودية</span>
+      </div>
+      <div class="sec-badge">
+        <span class="sec-badge-icon">🌍</span>
+        <span data-ar="مقبول عالمياً" data-en="Accepted Worldwide">مقبول عالمياً</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
