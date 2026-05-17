@@ -1,15 +1,16 @@
 // ============================================================
 // Firebase Auth System - Digital Card
-// ستحتاج لاستبدال firebaseConfig ببياناتك من Firebase Console
+// استبدل firebaseConfig بالقيم الحقيقية من Firebase Console
 // ============================================================
 
 const firebaseConfig = {
-    apiKey: "REPLACE_WITH_YOUR_API_KEY",
-    authDomain: "REPLACE_WITH_YOUR_AUTH_DOMAIN",
-    projectId: "REPLACE_WITH_YOUR_PROJECT_ID",
-    storageBucket: "REPLACE_WITH_YOUR_STORAGE_BUCKET",
-    messagingSenderId: "REPLACE_WITH_YOUR_MESSAGING_SENDER_ID",
-    appId: "REPLACE_WITH_YOUR_APP_ID"
+        apiKey: "AIzaSyCwUxnt6rmxA7bu7avAwk8WBXK-xWrXbPk",
+        authDomain: "digital-card-7edcc.firebaseapp.com",
+        projectId: "digital-card-7edcc",
+        storageBucket: "digital-card-7edcc.firebasestorage.app",
+        messagingSenderId: "829825531652",
+        appId: "1:829825531652:web:9ad12852e0b77a36ff1a51",
+        measurementId: "G-QCSM1LQMH5"
 };
 
 // تهيئة Firebase
@@ -18,113 +19,125 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // ============================================================
-// إدارة Modal نظام المصادقة
+// نظام إدارة Modal المصادقة
 // ============================================================
 
 function openAuthModal(tab) {
-    const modal = document.getElementById('authModal');
-    if (!modal) return;
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    if (tab === 'login') showAuthTab('login');
-    else showAuthTab('register');
+        const modal = document.getElementById('authModal');
+        if (!modal) return;
+        modal.style.display = 'flex';
+        if (tab) showAuthTab(tab);
 }
 
 function closeAuthModal() {
-    const modal = document.getElementById('authModal');
-    if (!modal) return;
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
+        const modal = document.getElementById('authModal');
+        if (modal) modal.style.display = 'none';
+        clearAuthMessages();
 }
 
 function showAuthTab(tab) {
-    document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.auth-tab-content').forEach(c => c.classList.remove('active'));
-    document.querySelector('[data-tab="' + tab + '"]').classList.add('active');
-    document.getElementById('tab-' + tab).classList.add('active');
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+        const tabBtn = document.getElementById('tab-' + tab);
+        const tabForm = document.getElementById('form-' + tab);
+        if (tabBtn) tabBtn.classList.add('active');
+        if (tabForm) tabForm.classList.add('active');
+}
+
+function clearAuthMessages() {
+        document.querySelectorAll('.auth-message').forEach(el => {
+                    el.textContent = '';
+                    el.className = 'auth-message';
+        });
+}
+
+function showMessage(elementId, message, type) {
+        const el = document.getElementById(elementId);
+        if (el) {
+                    el.textContent = message;
+                    el.className = 'auth-message ' + type;
+        }
 }
 
 // ============================================================
 // تسجيل مستخدم جديد
 // ============================================================
 
-async function registerUser(e) {
-    e.preventDefault();
-    const name = document.getElementById('reg-name').value.trim();
-    const phone = document.getElementById('reg-phone').value.trim();
-    const email = document.getElementById('reg-email').value.trim();
-    const password = document.getElementById('reg-password').value;
-    const confirm = document.getElementById('reg-confirm').value;
-    const msgEl = document.getElementById('reg-msg');
+async function registerUser() {
+        const name = document.getElementById('reg-name')?.value?.trim();
+        const email = document.getElementById('reg-email')?.value?.trim();
+        const phone = document.getElementById('reg-phone')?.value?.trim();
+        const password = document.getElementById('reg-password')?.value;
+        const confirmPassword = document.getElementById('reg-confirm-password')?.value;
 
-  msgEl.textContent = '';
-    if (password !== confirm) {
-          msgEl.textContent = 'كلمتا المرور غير متطابقتين';
-          msgEl.className = 'auth-msg error';
-          return;
+    if (!name || !email || !phone || !password || !confirmPassword) {
+                showMessage('reg-message', 'يرجى تعبئة جميع الحقول', 'error');
+                return;
     }
+
+    if (password !== confirmPassword) {
+                showMessage('reg-message', 'كلمة المرور غير متطابقة', 'error');
+                return;
+    }
+
     if (password.length < 6) {
-          msgEl.textContent = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
-          msgEl.className = 'auth-msg error';
-          return;
+                showMessage('reg-message', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                return;
     }
 
-  const btn = document.getElementById('reg-btn');
-    btn.disabled = true;
-    btn.textContent = 'جارٍ الإنشاء...';
+    try {
+                showMessage('reg-message', 'جاري إنشاء الحساب...', 'info');
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
 
-  try {
-        const cred = await auth.createUserWithEmailAndPassword(email, password);
-        await cred.user.updateProfile({ displayName: name });
-        await db.collection('users').doc(cred.user.uid).set({
-                name: name,
-                phone: phone,
-                email: email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        msgEl.textContent = 'تم إنشاء حسابك بنجاح!';
-        msgEl.className = 'auth-msg success';
-        setTimeout(() => { closeAuthModal(); showProfileSection(cred.user); }, 1200);
-  } catch (err) {
-        let msg = 'حدث خطأ، حاول مرة أخرى';
-        if (err.code === 'auth/email-already-in-use') msg = 'البريد الإلكتروني مستخدم بالفعل';
-        if (err.code === 'auth/invalid-email') msg = 'البريد الإلكتروني غير صحيح';
-        msgEl.textContent = msg;
-        msgEl.className = 'auth-msg error';
-        btn.disabled = false;
-        btn.textContent = 'إنشاء حساب';
-  }
+            // تحديث اسم المستخدم
+            await user.updateProfile({ displayName: name });
+
+            // حفظ البيانات في Firestore
+            await db.collection('users').doc(user.uid).set({
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            showMessage('reg-message', 'تم إنشاء الحساب بنجاح!', 'success');
+                setTimeout(() => closeAuthModal(), 1500);
+    } catch (error) {
+                let errorMsg = 'حدث خطأ، حاول مرة أخرى';
+                if (error.code === 'auth/email-already-in-use') errorMsg = 'البريد الإلكتروني مستخدم بالفعل';
+                else if (error.code === 'auth/invalid-email') errorMsg = 'البريد الإلكتروني غير صحيح';
+                else if (error.code === 'auth/weak-password') errorMsg = 'كلمة المرور ضعيفة جداً';
+                showMessage('reg-message', errorMsg, 'error');
+    }
 }
 
 // ============================================================
 // تسجيل الدخول
 // ============================================================
 
-async function loginUser(e) {
-    e.preventDefault();
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-    const msgEl = document.getElementById('login-msg');
+async function loginUser() {
+        const email = document.getElementById('login-email')?.value?.trim();
+        const password = document.getElementById('login-password')?.value;
 
-  msgEl.textContent = '';
-    const btn = document.getElementById('login-btn');
-    btn.disabled = true;
-    btn.textContent = 'جارٍ الدخول...';
+    if (!email || !password) {
+                showMessage('login-message', 'يرجى إدخال البريد الإلكتروني وكلمة المرور', 'error');
+                return;
+    }
 
-  try {
-        const cred = await auth.signInWithEmailAndPassword(email, password);
-        closeAuthModal();
-        showProfileSection(cred.user);
-  } catch (err) {
-        let msg = 'خطأ في البريد أو كلمة المرور';
-        if (err.code === 'auth/user-not-found') msg = 'لا يوجد حساب بهذا البريد';
-        if (err.code === 'auth/wrong-password') msg = 'كلمة المرور غير صحيحة';
-        if (err.code === 'auth/too-many-requests') msg = 'محاولات كثيرة، حاول لاحقاً';
-        msgEl.textContent = msg;
-        msgEl.className = 'auth-msg error';
-        btn.disabled = false;
-        btn.textContent = 'تسجيل الدخول';
-  }
+    try {
+                showMessage('login-message', 'جاري تسجيل الدخول...', 'info');
+                await auth.signInWithEmailAndPassword(email, password);
+                showMessage('login-message', 'تم تسجيل الدخول بنجاح!', 'success');
+                setTimeout(() => closeAuthModal(), 1000);
+    } catch (error) {
+                let errorMsg = 'حدث خطأ، حاول مرة أخرى';
+                if (error.code === 'auth/user-not-found') errorMsg = 'البريد الإلكتروني غير مسجل';
+                else if (error.code === 'auth/wrong-password') errorMsg = 'كلمة المرور غير صحيحة';
+                else if (error.code === 'auth/invalid-email') errorMsg = 'البريد الإلكتروني غير صحيح';
+                else if (error.code === 'auth/too-many-requests') errorMsg = 'تم تجاوز عدد المحاولات، حاول لاحقاً';
+                showMessage('login-message', errorMsg, 'error');
+    }
 }
 
 // ============================================================
@@ -132,14 +145,17 @@ async function loginUser(e) {
 // ============================================================
 
 async function resetPassword() {
-    const email = document.getElementById('login-email').value.trim();
-    if (!email) { alert('أدخل بريدك الإلكتروني أولاً'); return; }
-    try {
-          await auth.sendPasswordResetEmail(email);
-          alert('تم إرسال رابط إعادة التعيين إلى ' + email);
-    } catch (err) {
-          alert('تعذر إرسال البريد، تأكد من صحة الإيميل');
-    }
+        const email = document.getElementById('login-email')?.value?.trim();
+        if (!email) {
+                    showMessage('login-message', 'يرجى إدخال بريدك الإلكتروني أولاً', 'error');
+                    return;
+        }
+        try {
+                    await auth.sendPasswordResetEmail(email);
+                    showMessage('login-message', 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني', 'success');
+        } catch (error) {
+                    showMessage('login-message', 'البريد الإلكتروني غير مسجل', 'error');
+        }
 }
 
 // ============================================================
@@ -147,108 +163,115 @@ async function resetPassword() {
 // ============================================================
 
 async function logoutUser() {
-    await auth.signOut();
-    location.reload();
-}
-
-// ============================================================
-// تحديث بيانات العضو (جوال + كلمة مرور)
-// ============================================================
-
-async function updateProfile(e) {
-    e.preventDefault();
-    const user = auth.currentUser;
-    if (!user) return;
-    const phone = document.getElementById('profile-phone').value.trim();
-    const newPass = document.getElementById('profile-newpass').value;
-    const confirmPass = document.getElementById('profile-confirmpass').value;
-    const msgEl = document.getElementById('profile-msg');
-    msgEl.textContent = '';
-
-  try {
-        await db.collection('users').doc(user.uid).update({ phone: phone });
-
-      if (newPass) {
-              if (newPass !== confirmPass) {
-                        msgEl.textContent = 'كلمتا المرور غير متطابقتين';
-                        msgEl.className = 'auth-msg error';
-                        return;
-              }
-              if (newPass.length < 6) {
-                        msgEl.textContent = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
-                        msgEl.className = 'auth-msg error';
-                        return;
-              }
-              await user.updatePassword(newPass);
-      }
-
-      msgEl.textContent = 'تم تحديث البيانات بنجاح ✓';
-        msgEl.className = 'auth-msg success';
-        document.getElementById('profile-newpass').value = '';
-        document.getElementById('profile-confirmpass').value = '';
-  } catch (err) {
-        let msg = 'حدث خطأ أثناء التحديث';
-        if (err.code === 'auth/requires-recent-login') {
-                msg = 'يرجى تسجيل الدخول مجدداً ثم المحاولة';
+        try {
+                    await auth.signOut();
+        } catch (error) {
+                    console.error('Logout error:', error);
         }
-        msgEl.textContent = msg;
-        msgEl.className = 'auth-msg error';
-  }
 }
 
 // ============================================================
-// عرض قسم ملف العضو بعد الدخول
+// تحديث الملف الشخصي
+// ============================================================
+
+async function updateProfile() {
+        const user = auth.currentUser;
+        if (!user) return;
+
+    const phone = document.getElementById('profile-phone')?.value?.trim();
+        const newPassword = document.getElementById('profile-new-password')?.value;
+        const confirmNewPassword = document.getElementById('profile-confirm-password')?.value;
+
+    try {
+                // تحديث رقم الجوال
+            if (phone) {
+                            await db.collection('users').doc(user.uid).update({ phone: phone });
+            }
+
+            // تحديث كلمة المرور
+            if (newPassword) {
+                            if (newPassword.length < 6) {
+                                                showMessage('profile-message', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                                                return;
+                            }
+                            if (newPassword !== confirmNewPassword) {
+                                                showMessage('profile-message', 'كلمة المرور الجديدة غير متطابقة', 'error');
+                                                return;
+                            }
+                            await user.updatePassword(newPassword);
+            }
+
+            showMessage('profile-message', 'تم تحديث الملف الشخصي بنجاح!', 'success');
+                showProfileSection(user);
+    } catch (error) {
+                let errorMsg = 'حدث خطأ أثناء التحديث';
+                if (error.code === 'auth/requires-recent-login') {
+                                errorMsg = 'يرجى تسجيل الخروج والدخول مجدداً لتغيير كلمة المرور';
+                }
+                showMessage('profile-message', errorMsg, 'error');
+    }
+}
+
+// ============================================================
+// عرض قسم الملف الشخصي
 // ============================================================
 
 async function showProfileSection(user) {
-    const profileSection = document.getElementById('profile');
-    const authPrompt = document.getElementById('auth-prompt');
-    const profileContent = document.getElementById('profile-content');
-    if (!profileSection) return;
+        const guestSection = document.getElementById('guest-section');
+        const profileSection = document.getElementById('profile-section');
 
-  const navBtn = document.querySelector('.nav-profile-btn');
-    if (navBtn) {
-          navBtn.innerHTML = '👤 ' + (user.displayName || 'حسابي');
-    }
+    if (guestSection) guestSection.style.display = 'none';
+        if (profileSection) profileSection.style.display = 'block';
 
-  try {
-        const doc = await db.collection('users').doc(user.uid).get();
-        const data = doc.exists ? doc.data() : {};
+    // تحديث اسم المستخدم
+    const nameEl = document.getElementById('profile-name');
+        if (nameEl) nameEl.textContent = user.displayName || 'المستخدم';
 
-      if (authPrompt) authPrompt.style.display = 'none';
-        if (profileContent) profileContent.style.display = 'block';
-
-      const nameEl = document.getElementById('profile-display-name');
-        const emailEl = document.getElementById('profile-display-email');
-        const phoneInput = document.getElementById('profile-phone');
-
-      if (nameEl) nameEl.textContent = data.name || user.displayName || 'المستخدم';
+    // تحديث البريد الإلكتروني
+    const emailEl = document.getElementById('profile-email-display');
         if (emailEl) emailEl.textContent = user.email;
-        if (phoneInput) phoneInput.value = data.phone || '';
 
-      profileSection.scrollIntoView({ behavior: 'smooth' });
-  } catch (err) {
-        console.error('Error loading profile:', err);
-  }
+    // تحميل البيانات من Firestore
+    try {
+                const doc = await db.collection('users').doc(user.uid).get();
+                if (doc.exists) {
+                                const data = doc.data();
+                                const phoneEl = document.getElementById('profile-phone');
+                                if (phoneEl && data.phone) phoneEl.value = data.phone;
+                }
+    } catch (error) {
+                console.error('Error loading profile:', error);
+    }
 }
 
 // ============================================================
 // مراقبة حالة المصادقة
 // ============================================================
 
-auth.onAuthStateChanged((user) => {
-    const navBtn = document.querySelector('.nav-profile-btn');
-    const authPrompt = document.getElementById('auth-prompt');
-    const profileContent = document.getElementById('profile-content');
+auth.onAuthStateChanged(function(user) {
+        const guestSection = document.getElementById('guest-section');
+        const profileSection = document.getElementById('profile-section');
+        const navLoginBtn = document.getElementById('nav-login-btn');
+        const navLogoutBtn = document.getElementById('nav-logout-btn');
+        const navUserName = document.getElementById('nav-user-name');
 
-                          if (user) {
-                                if (navBtn) navBtn.innerHTML = '👤 ' + (user.displayName || 'حسابي');
-                                if (authPrompt) authPrompt.style.display = 'none';
-                                if (profileContent) profileContent.style.display = 'block';
-                                showProfileSection(user);
-                          } else {
-                                if (navBtn) navBtn.innerHTML = '👤 تسجيل الدخول';
-                                if (authPrompt) authPrompt.style.display = 'flex';
-                                if (profileContent) profileContent.style.display = 'none';
-                          }
+                            if (user) {
+                                        // المستخدم مسجل الدخول
+            if (guestSection) guestSection.style.display = 'none';
+                                        if (profileSection) profileSection.style.display = 'block';
+                                        if (navLoginBtn) navLoginBtn.style.display = 'none';
+                                        if (navLogoutBtn) navLogoutBtn.style.display = 'inline-block';
+                                        if (navUserName) {
+                                                        navUserName.textContent = user.displayName || user.email;
+                                                        navUserName.style.display = 'inline-block';
+                                        }
+                                        showProfileSection(user);
+                            } else {
+                                        // المستخدم غير مسجل
+            if (guestSection) guestSection.style.display = 'block';
+                                        if (profileSection) profileSection.style.display = 'none';
+                                        if (navLoginBtn) navLoginBtn.style.display = 'inline-block';
+                                        if (navLogoutBtn) navLogoutBtn.style.display = 'none';
+                                        if (navUserName) navUserName.style.display = 'none';
+                            }
 });
