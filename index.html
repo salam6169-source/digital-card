@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Card - تفعيل بطاقات الصالات</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<title>Digital Card - ØªÙØ¹ÙÙ Ø¨Ø·Ø§ÙØ§Øª Ø§ÙØµØ§ÙØ§Øª</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -293,7 +296,7 @@
     font-weight: 400;
   }
 
-  /* HERO VISUAL - بطاقة مطار */
+  /* HERO VISUAL - Ø¨Ø·Ø§ÙØ© ÙØ·Ø§Ø± */
   .hero-visual {
     position: relative;
     animation: fadeIn 1s 0.5s ease both;
@@ -469,7 +472,7 @@
   /* ===== SERVICES ===== */
   .services-bg { background: var(--gray-light); }
 
-  /* خدمة العملاء بطاقة عريضة */
+  /* Ø®Ø¯ÙØ© Ø§ÙØ¹ÙÙØ§Ø¡ Ø¨Ø·Ø§ÙØ© Ø¹Ø±ÙØ¶Ø© */
   .support-banner {
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
     border-radius: 20px;
@@ -1090,7 +1093,7 @@
   }
 
   .footer-links a:hover { color: var(--gold-light); }
-  .footer-links a::before { content: '›'; color: var(--gold); }
+  .footer-links a::before { content: 'âº'; color: var(--gold); }
 
   .footer-bottom {
     max-width: 1300px;
@@ -1594,10 +1597,10 @@
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#services">المنتجات</a></li>
-    <li><a href="#why">لماذا نحن</a></li>
-    <li><a href="#process">آلية العمل</a></li>
-    <li><a href="#contact" class="nav-cta">تواصل معنا</a></li>
+    <li><a href="#services">Ø§ÙÙÙØªØ¬Ø§Øª</a></li>
+    <li><a href="#why">ÙÙØ§Ø°Ø§ ÙØ­Ù</a></li>
+    <li><a href="#process">Ø¢ÙÙØ© Ø§ÙØ¹ÙÙ</a></li>
+    <li><a href="#contact" class="nav-cta">ØªÙØ§ØµÙ ÙØ¹ÙØ§</a></li>
   </ul>
 
     <li>
@@ -1605,12 +1608,12 @@
     </li>
     <li>
       <a href="#" class="nav-profile-btn" onclick="showProfile(event)">
-        <span>👤</span> <span data-ar="ملف العضو" data-en="My Profile">ملف العضو</span>
+        <span>ð¤</span> <span data-ar="ÙÙÙ Ø§ÙØ¹Ø¶Ù" data-en="My Profile">ÙÙÙ Ø§ÙØ¹Ø¶Ù</span>
       </a>
     </li>
   
     <li>
-      <span style="color:var(--gold-light);font-size:12px;font-weight:700;border:1px solid rgba(201,168,76,0.4);padding:4px 10px;border-radius:12px;letter-spacing:0.5px;">💵 USD</span>
+      <span style="color:var(--gold-light);font-size:12px;font-weight:700;border:1px solid rgba(201,168,76,0.4);padding:4px 10px;border-radius:12px;letter-spacing:0.5px;">ðµ USD</span>
     </li>
   </nav>
 
@@ -1620,31 +1623,31 @@
     <div class="hero-content">
       <div class="hero-badge">
         <div class="hero-badge-dot"></div>
-        متخصصون في تفعيل دخول صالات المطارات
+        ÙØªØ®ØµØµÙÙ ÙÙ ØªÙØ¹ÙÙ Ø¯Ø®ÙÙ ØµØ§ÙØ§Øª Ø§ÙÙØ·Ø§Ø±Ø§Øª
       </div>
       <h1>
-        ادخل صالات الضيافة
-        <em>بأقل الأسعار!</em>
+        Ø§Ø¯Ø®Ù ØµØ§ÙØ§Øª Ø§ÙØ¶ÙØ§ÙØ©
+        <em>Ø¨Ø£ÙÙ Ø§ÙØ£Ø³Ø¹Ø§Ø±!</em>
       </h1>
       <p class="hero-desc">
-        Digital Card متخصصة في تفعيل زيارات صالات المطارات عبر <strong style="color:var(--gold-light)">Visa Airport</strong> و<strong style="color:var(--gold-light)">Mastercard Travel Pass</strong> — احصل على دخول صالات الضيافة حول العالم بأسعار لا تُنافَس وبكل سهولة.
+        Digital Card ÙØªØ®ØµØµØ© ÙÙ ØªÙØ¹ÙÙ Ø²ÙØ§Ø±Ø§Øª ØµØ§ÙØ§Øª Ø§ÙÙØ·Ø§Ø±Ø§Øª Ø¹Ø¨Ø± <strong style="color:var(--gold-light)">Visa Airport</strong> Ù<strong style="color:var(--gold-light)">Mastercard Travel Pass</strong> â Ø§Ø­ØµÙ Ø¹ÙÙ Ø¯Ø®ÙÙ ØµØ§ÙØ§Øª Ø§ÙØ¶ÙØ§ÙØ© Ø­ÙÙ Ø§ÙØ¹Ø§ÙÙ Ø¨Ø£Ø³Ø¹Ø§Ø± ÙØ§ ØªÙÙØ§ÙÙØ³ ÙØ¨ÙÙ Ø³ÙÙÙØ©.
       </p>
       <div class="hero-actions">
-        <a href="#services" class="btn-primary">اكتشف المنتجات ←</a>
-        <a href="#contact" class="btn-outline">💬 تواصل معنا</a>
+        <a href="#services" class="btn-primary">Ø§ÙØªØ´Ù Ø§ÙÙÙØªØ¬Ø§Øª â</a>
+        <a href="#contact" class="btn-outline">ð¬ ØªÙØ§ØµÙ ÙØ¹ÙØ§</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
           <div class="hero-stat-num">1,300+</div>
-          <div class="hero-stat-label">صالة حول العالم</div>
+          <div class="hero-stat-label">ØµØ§ÙØ© Ø­ÙÙ Ø§ÙØ¹Ø§ÙÙ</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num">$1</div>
-          <div class="hero-stat-label">أقل سعر للزيارة</div>
+          <div class="hero-stat-label">Ø£ÙÙ Ø³Ø¹Ø± ÙÙØ²ÙØ§Ø±Ø©</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num">24/7</div>
-          <div class="hero-stat-label">دعم مستمر</div>
+          <div class="hero-stat-label">Ø¯Ø¹Ù ÙØ³ØªÙØ±</div>
         </div>
       </div>
     </div>
@@ -1652,8 +1655,8 @@
     <div class="hero-visual">
       <div class="lounge-card">
         <div class="lounge-header">
-          <div class="lounge-title">✈ Airport Lounge Access</div>
-          <div class="lounge-live"><div class="live-dot"></div> نشط الآن</div>
+          <div class="lounge-title">â Airport Lounge Access</div>
+          <div class="lounge-live"><div class="live-dot"></div> ÙØ´Ø· Ø§ÙØ¢Ù</div>
         </div>
 
         <div class="airport-item">
@@ -1662,7 +1665,7 @@
           </div>
           <div class="airport-info">
             <div class="airport-name">Visa Airport Companion</div>
-            <div class="airport-sub">تفعيل دخول صالات الفيزا</div>
+            <div class="airport-sub">ØªÙØ¹ÙÙ Ø¯Ø®ÙÙ ØµØ§ÙØ§Øª Ø§ÙÙÙØ²Ø§</div>
           </div>
           <div class="airport-status status-active">$100</div>
         </div>
@@ -1676,24 +1679,24 @@
           </div>
           <div class="airport-info">
             <div class="airport-name">Mastercard Travel Pass</div>
-            <div class="airport-sub">تفعيل صالات ماستركارد</div>
+            <div class="airport-sub">ØªÙØ¹ÙÙ ØµØ§ÙØ§Øª ÙØ§Ø³ØªØ±ÙØ§Ø±Ø¯</div>
           </div>
           <div class="airport-status status-active">$5</div>
         </div>
 
         <div class="airport-item">
-          <div class="airport-icon" style="background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3);">🛍️</div>
+          <div class="airport-icon" style="background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3);">ðï¸</div>
           <div class="airport-info">
-            <div class="airport-name">مشتريات رصيد</div>
-            <div class="airport-sub">شراء عبر رصيد البطاقة</div>
+            <div class="airport-name">ÙØ´ØªØ±ÙØ§Øª Ø±ØµÙØ¯</div>
+            <div class="airport-sub">Ø´Ø±Ø§Ø¡ Ø¹Ø¨Ø± Ø±ØµÙØ¯ Ø§ÙØ¨Ø·Ø§ÙØ©</div>
           </div>
           <div class="airport-status status-active">$1</div>
         </div>
       </div>
 
       <div class="floating-card fc-2">
-        <div class="fc-label">آخر تفعيل</div>
-        <div class="fc-value">منذ 3 دقائق ⚡</div>
+        <div class="fc-label">Ø¢Ø®Ø± ØªÙØ¹ÙÙ</div>
+        <div class="fc-value">ÙÙØ° 3 Ø¯ÙØ§Ø¦Ù â¡</div>
       </div>
     </div>
   </div>
@@ -1703,41 +1706,41 @@
 <section class="services-bg" id="services">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-tag">خدماتنا</div>
-      <h2 class="section-title">خدمة العملاء <span>والمنتجات المتاحة</span></h2>
-      <p class="section-sub">نوفر دعماً متواصلاً ومنتجات متنوعة تناسب احتياجاتك للوصول إلى صالات المطارات حول العالم.</p>
+      <div class="section-tag">Ø®Ø¯ÙØ§ØªÙØ§</div>
+      <h2 class="section-title">Ø®Ø¯ÙØ© Ø§ÙØ¹ÙÙØ§Ø¡ <span>ÙØ§ÙÙÙØªØ¬Ø§Øª Ø§ÙÙØªØ§Ø­Ø©</span></h2>
+      <p class="section-sub">ÙÙÙØ± Ø¯Ø¹ÙØ§Ù ÙØªÙØ§ØµÙØ§Ù ÙÙÙØªØ¬Ø§Øª ÙØªÙÙØ¹Ø© ØªÙØ§Ø³Ø¨ Ø§Ø­ØªÙØ§Ø¬Ø§ØªÙ ÙÙÙØµÙÙ Ø¥ÙÙ ØµØ§ÙØ§Øª Ø§ÙÙØ·Ø§Ø±Ø§Øª Ø­ÙÙ Ø§ÙØ¹Ø§ÙÙ.</p>
     </div>
 
-    <!-- خدمة العملاء -->
+    <!-- Ø®Ø¯ÙØ© Ø§ÙØ¹ÙÙØ§Ø¡ -->
     <div class="support-banner">
       <div class="support-left">
-        <div class="support-icon">🎧</div>
+        <div class="support-icon">ð§</div>
         <div>
-          <div class="support-title">خدمة العملاء — 24/7</div>
-          <div class="support-desc">فريقنا متاح على مدار الساعة للإجابة على جميع استفساراتك حول تفعيل بطاقات الصالات، وحل أي مشكلة بسرعة واحترافية.</div>
+          <div class="support-title">Ø®Ø¯ÙØ© Ø§ÙØ¹ÙÙØ§Ø¡ â 24/7</div>
+          <div class="support-desc">ÙØ±ÙÙÙØ§ ÙØªØ§Ø­ Ø¹ÙÙ ÙØ¯Ø§Ø± Ø§ÙØ³Ø§Ø¹Ø© ÙÙØ¥Ø¬Ø§Ø¨Ø© Ø¹ÙÙ Ø¬ÙÙØ¹ Ø§Ø³ØªÙØ³Ø§Ø±Ø§ØªÙ Ø­ÙÙ ØªÙØ¹ÙÙ Ø¨Ø·Ø§ÙØ§Øª Ø§ÙØµØ§ÙØ§ØªØ ÙØ­Ù Ø£Ù ÙØ´ÙÙØ© Ø¨Ø³Ø±Ø¹Ø© ÙØ§Ø­ØªØ±Ø§ÙÙØ©.</div>
         </div>
       </div>
       <div class="support-channels">
-        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20خدمات%20Digital%20Card" target="_blank" class="channel-btn channel-wa">
-          <span>💬</span> واتساب
+        <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±%20Ø¹Ù%20Ø®Ø¯ÙØ§Øª%20Digital%20Card" target="_blank" class="channel-btn channel-wa">
+          <span>ð¬</span> ÙØ§ØªØ³Ø§Ø¨
         </a>
-        <a href="mailto:salam6169@gmail.com?subject=استفسار%20من%20موقع%20Digital%20Card" class="channel-btn channel-tg">
-          <span>✉️</span> البريد
+        <a href="mailto:salam6169@gmail.com?subject=Ø§Ø³ØªÙØ³Ø§Ø±%20ÙÙ%20ÙÙÙØ¹%20Digital%20Card" class="channel-btn channel-tg">
+          <span>âï¸</span> Ø§ÙØ¨Ø±ÙØ¯
         </a>
       </div>
     </div>
 
-    <!-- المنتجات -->
-    <div class="products-title">🛒 المنتجات</div>
+    <!-- Ø§ÙÙÙØªØ¬Ø§Øª -->
+    <div class="products-title">ð Ø§ÙÙÙØªØ¬Ø§Øª</div>
     <div class="products-grid">
 
       <!-- Visa -->
       <div class="product-card visa-card">
         <div class="card-header visa-header">
-          <div class="popular-badge">⭐ الأكثر طلباً</div>
+          <div class="popular-badge">â­ Ø§ÙØ£ÙØ«Ø± Ø·ÙØ¨Ø§Ù</div>
           <div class="card-brand">
             <div class="brand-name" style="font-size:28px; letter-spacing:-1px;">VISA</div>
-            <div style="font-size:30px;">✈️</div>
+            <div style="font-size:30px;">âï¸</div>
           </div>
           <div class="card-price-area">
             <div class="card-price">100</div>
@@ -1746,14 +1749,14 @@
         </div>
         <div class="card-body">
           <div class="card-name">Visa Airport Companion</div>
-          <div class="card-desc">تفعيل تطبيق Visa Airport Companion للدخول إلى صالات الضيافة الحصرية في المطارات حول العالم.</div>
+          <div class="card-desc">ØªÙØ¹ÙÙ ØªØ·Ø¨ÙÙ Visa Airport Companion ÙÙØ¯Ø®ÙÙ Ø¥ÙÙ ØµØ§ÙØ§Øª Ø§ÙØ¶ÙØ§ÙØ© Ø§ÙØ­ØµØ±ÙØ© ÙÙ Ø§ÙÙØ·Ø§Ø±Ø§Øª Ø­ÙÙ Ø§ÙØ¹Ø§ÙÙ.</div>
           <ul class="card-features">
-            <li><span class="feat-check check-blue">✓</span> دخول +1,300 صالة عالمياً</li>
-            <li><span class="feat-check check-blue">✓</span> تفعيل فوري عبر التطبيق</li>
-            <li><span class="feat-check check-blue">✓</span> دخول مجاني + ضيف واحد</li>
-            <li><span class="feat-check check-blue">✓</span> يشمل مطارات السعودية والخليج</li>
+            <li><span class="feat-check check-blue">â</span> Ø¯Ø®ÙÙ +1,300 ØµØ§ÙØ© Ø¹Ø§ÙÙÙØ§Ù</li>
+            <li><span class="feat-check check-blue">â</span> ØªÙØ¹ÙÙ ÙÙØ±Ù Ø¹Ø¨Ø± Ø§ÙØªØ·Ø¨ÙÙ</li>
+            <li><span class="feat-check check-blue">â</span> Ø¯Ø®ÙÙ ÙØ¬Ø§ÙÙ + Ø¶ÙÙ ÙØ§Ø­Ø¯</li>
+            <li><span class="feat-check check-blue">â</span> ÙØ´ÙÙ ÙØ·Ø§Ø±Ø§Øª Ø§ÙØ³Ø¹ÙØ¯ÙØ© ÙØ§ÙØ®ÙÙØ¬</li>
           </ul>
-          <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20تفعيل%20Visa%20Airport%20Companion%20-%20$100" target="_blank" class="card-cta cta-visa">فعّل الآن ←</a>
+          <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20ØªÙØ¹ÙÙ%20Visa%20Airport%20Companion%20-%20$100" target="_blank" class="card-cta cta-visa">ÙØ¹ÙÙ Ø§ÙØ¢Ù â</a>
         </div>
       </div>
 
@@ -1774,23 +1777,23 @@
         </div>
         <div class="card-body">
           <div class="card-name">Mastercard Travel Pass</div>
-          <div class="card-desc">تفعيل خدمة Mastercard Travel Pass للوصول إلى صالات الاسترخاء في المطارات الدولية بسعر مميز.</div>
+          <div class="card-desc">ØªÙØ¹ÙÙ Ø®Ø¯ÙØ© Mastercard Travel Pass ÙÙÙØµÙÙ Ø¥ÙÙ ØµØ§ÙØ§Øª Ø§ÙØ§Ø³ØªØ±Ø®Ø§Ø¡ ÙÙ Ø§ÙÙØ·Ø§Ø±Ø§Øª Ø§ÙØ¯ÙÙÙØ© Ø¨Ø³Ø¹Ø± ÙÙÙØ².</div>
           <ul class="card-features">
-            <li><span class="feat-check check-red">✓</span> دخول صالات ماستركارد العالمية</li>
-            <li><span class="feat-check check-red">✓</span> تفعيل خلال دقائق</li>
-            <li><span class="feat-check check-red">✓</span> سعر اقتصادي منخفض</li>
-            <li><span class="feat-check check-red">✓</span> مناسب للسفر المتكرر</li>
+            <li><span class="feat-check check-red">â</span> Ø¯Ø®ÙÙ ØµØ§ÙØ§Øª ÙØ§Ø³ØªØ±ÙØ§Ø±Ø¯ Ø§ÙØ¹Ø§ÙÙÙØ©</li>
+            <li><span class="feat-check check-red">â</span> ØªÙØ¹ÙÙ Ø®ÙØ§Ù Ø¯ÙØ§Ø¦Ù</li>
+            <li><span class="feat-check check-red">â</span> Ø³Ø¹Ø± Ø§ÙØªØµØ§Ø¯Ù ÙÙØ®ÙØ¶</li>
+            <li><span class="feat-check check-red">â</span> ÙÙØ§Ø³Ø¨ ÙÙØ³ÙØ± Ø§ÙÙØªÙØ±Ø±</li>
           </ul>
-          <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20تفعيل%20Mastercard%20Travel%20Pass%20-%20$5" target="_blank" class="card-cta cta-master">فعّل الآن ←</a>
+          <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20ØªÙØ¹ÙÙ%20Mastercard%20Travel%20Pass%20-%20$5" target="_blank" class="card-cta cta-master">ÙØ¹ÙÙ Ø§ÙØ¢Ù â</a>
         </div>
       </div>
 
-      <!-- مشتريات -->
+      <!-- ÙØ´ØªØ±ÙØ§Øª -->
       <div class="product-card shop-card">
         <div class="card-header shop-header">
           <div class="card-brand">
-            <div class="brand-name" style="font-family:'Cairo',sans-serif; font-size:20px;">مشتريات</div>
-            <div style="font-size:30px;">🛍️</div>
+            <div class="brand-name" style="font-family:'Cairo',sans-serif; font-size:20px;">ÙØ´ØªØ±ÙØ§Øª</div>
+            <div style="font-size:30px;">ðï¸</div>
           </div>
           <div class="card-price-area">
             <div class="card-price">1</div>
@@ -1798,15 +1801,15 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="card-name">مشتريات برصيد البطاقة</div>
-          <div class="card-desc">شراء منتجات ورصيد متنوع باستخدام رصيد بطاقتك بأقل تكلفة ممكنة وبكل سهولة وأمان.</div>
+          <div class="card-name">ÙØ´ØªØ±ÙØ§Øª Ø¨Ø±ØµÙØ¯ Ø§ÙØ¨Ø·Ø§ÙØ©</div>
+          <div class="card-desc">Ø´Ø±Ø§Ø¡ ÙÙØªØ¬Ø§Øª ÙØ±ØµÙØ¯ ÙØªÙÙØ¹ Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù Ø±ØµÙØ¯ Ø¨Ø·Ø§ÙØªÙ Ø¨Ø£ÙÙ ØªÙÙÙØ© ÙÙÙÙØ© ÙØ¨ÙÙ Ø³ÙÙÙØ© ÙØ£ÙØ§Ù.</div>
           <ul class="card-features">
-            <li><span class="feat-check check-gold">✓</span> أقل سعر في السوق</li>
-            <li><span class="feat-check check-gold">✓</span> معاملات آمنة ومضمونة</li>
-            <li><span class="feat-check check-gold">✓</span> خيارات متعددة للمنتجات</li>
-            <li><span class="feat-check check-gold">✓</span> دعم فوري عند الحاجة</li>
+            <li><span class="feat-check check-gold">â</span> Ø£ÙÙ Ø³Ø¹Ø± ÙÙ Ø§ÙØ³ÙÙ</li>
+            <li><span class="feat-check check-gold">â</span> ÙØ¹Ø§ÙÙØ§Øª Ø¢ÙÙØ© ÙÙØ¶ÙÙÙØ©</li>
+            <li><span class="feat-check check-gold">â</span> Ø®ÙØ§Ø±Ø§Øª ÙØªØ¹Ø¯Ø¯Ø© ÙÙÙÙØªØ¬Ø§Øª</li>
+            <li><span class="feat-check check-gold">â</span> Ø¯Ø¹Ù ÙÙØ±Ù Ø¹ÙØ¯ Ø§ÙØ­Ø§Ø¬Ø©</li>
           </ul>
-          <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20المشتريات%20-%20$1" target="_blank" class="card-cta cta-shop">اطلب الآن ←</a>
+          <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±%20Ø¹Ù%20Ø§ÙÙØ´ØªØ±ÙØ§Øª%20-%20$1" target="_blank" class="card-cta cta-shop">Ø§Ø·ÙØ¨ Ø§ÙØ¢Ù â</a>
         </div>
       </div>
 
@@ -1821,54 +1824,54 @@
       <div class="why-visual">
         <div class="why-stat-card gold-card">
           <div class="wsc-num">1,300+</div>
-          <div class="wsc-label">صالة مطار عالمياً</div>
+          <div class="wsc-label">ØµØ§ÙØ© ÙØ·Ø§Ø± Ø¹Ø§ÙÙÙØ§Ù</div>
         </div>
         <div class="why-stat-card">
           <div class="wsc-num">$1</div>
-          <div class="wsc-label" style="color:var(--gold-light)">أقل سعر متاح</div>
+          <div class="wsc-label" style="color:var(--gold-light)">Ø£ÙÙ Ø³Ø¹Ø± ÙØªØ§Ø­</div>
         </div>
         <div class="why-stat-card">
-          <div class="wsc-num">دقائق</div>
-          <div class="wsc-label" style="color:var(--gold-light)">وقت التفعيل</div>
+          <div class="wsc-num">Ø¯ÙØ§Ø¦Ù</div>
+          <div class="wsc-label" style="color:var(--gold-light)">ÙÙØª Ø§ÙØªÙØ¹ÙÙ</div>
         </div>
         <div class="why-stat-card gold-card">
           <div class="wsc-num">24/7</div>
-          <div class="wsc-label">دعم مستمر</div>
+          <div class="wsc-label">Ø¯Ø¹Ù ÙØ³ØªÙØ±</div>
         </div>
       </div>
 
       <div>
-        <div class="section-tag">لماذا نحن</div>
-        <h2 class="section-title">الموقع الأول <span>لتفعيل صالات المطارات</span></h2>
-        <p class="section-sub" style="margin-bottom: 2rem;">متخصصون في تفعيل زيارات صالات الضيافة عبر Visa Airport وMastercard Travel Pass — بأسرع تفعيل وأوفر سعر.</p>
+        <div class="section-tag">ÙÙØ§Ø°Ø§ ÙØ­Ù</div>
+        <h2 class="section-title">Ø§ÙÙÙÙØ¹ Ø§ÙØ£ÙÙ <span>ÙØªÙØ¹ÙÙ ØµØ§ÙØ§Øª Ø§ÙÙØ·Ø§Ø±Ø§Øª</span></h2>
+        <p class="section-sub" style="margin-bottom: 2rem;">ÙØªØ®ØµØµÙÙ ÙÙ ØªÙØ¹ÙÙ Ø²ÙØ§Ø±Ø§Øª ØµØ§ÙØ§Øª Ø§ÙØ¶ÙØ§ÙØ© Ø¹Ø¨Ø± Visa Airport ÙMastercard Travel Pass â Ø¨Ø£Ø³Ø±Ø¹ ØªÙØ¹ÙÙ ÙØ£ÙÙØ± Ø³Ø¹Ø±.</p>
 
         <div class="why-features">
           <div class="why-feature">
-            <div class="why-feature-icon">⚡</div>
+            <div class="why-feature-icon">â¡</div>
             <div>
-              <h4>تفعيل فوري خلال دقائق</h4>
-              <p>بمجرد استلام طلبك نبدأ التفعيل فوراً — لا انتظار ولا تأخير، ستكون جاهزاً قبل رحلتك بوقت كافٍ.</p>
+              <h4>ØªÙØ¹ÙÙ ÙÙØ±Ù Ø®ÙØ§Ù Ø¯ÙØ§Ø¦Ù</h4>
+              <p>Ø¨ÙØ¬Ø±Ø¯ Ø§Ø³ØªÙØ§Ù Ø·ÙØ¨Ù ÙØ¨Ø¯Ø£ Ø§ÙØªÙØ¹ÙÙ ÙÙØ±Ø§Ù â ÙØ§ Ø§ÙØªØ¸Ø§Ø± ÙÙØ§ ØªØ£Ø®ÙØ±Ø Ø³ØªÙÙÙ Ø¬Ø§ÙØ²Ø§Ù ÙØ¨Ù Ø±Ø­ÙØªÙ Ø¨ÙÙØª ÙØ§ÙÙ.</p>
             </div>
           </div>
           <div class="why-feature">
-            <div class="why-feature-icon">💰</div>
+            <div class="why-feature-icon">ð°</div>
             <div>
-              <h4>أسعار لا تُنافَس</h4>
-              <p>نوفر أقل الأسعار في السوق لتفعيل بطاقات الصالات — من دولار واحد فقط دون أي رسوم خفية.</p>
+              <h4>Ø£Ø³Ø¹Ø§Ø± ÙØ§ ØªÙÙØ§ÙÙØ³</h4>
+              <p>ÙÙÙØ± Ø£ÙÙ Ø§ÙØ£Ø³Ø¹Ø§Ø± ÙÙ Ø§ÙØ³ÙÙ ÙØªÙØ¹ÙÙ Ø¨Ø·Ø§ÙØ§Øª Ø§ÙØµØ§ÙØ§Øª â ÙÙ Ø¯ÙÙØ§Ø± ÙØ§Ø­Ø¯ ÙÙØ· Ø¯ÙÙ Ø£Ù Ø±Ø³ÙÙ Ø®ÙÙØ©.</p>
             </div>
           </div>
           <div class="why-feature">
-            <div class="why-feature-icon">🛡️</div>
+            <div class="why-feature-icon">ð¡ï¸</div>
             <div>
-              <h4>موثوق وآمن 100%</h4>
-              <p>جميع عملياتنا آمنة وموثوقة، ونضمن حماية بياناتك وإتمام التفعيل بنجاح في كل مرة.</p>
+              <h4>ÙÙØ«ÙÙ ÙØ¢ÙÙ 100%</h4>
+              <p>Ø¬ÙÙØ¹ Ø¹ÙÙÙØ§ØªÙØ§ Ø¢ÙÙØ© ÙÙÙØ«ÙÙØ©Ø ÙÙØ¶ÙÙ Ø­ÙØ§ÙØ© Ø¨ÙØ§ÙØ§ØªÙ ÙØ¥ØªÙØ§Ù Ø§ÙØªÙØ¹ÙÙ Ø¨ÙØ¬Ø§Ø­ ÙÙ ÙÙ ÙØ±Ø©.</p>
             </div>
           </div>
           <div class="why-feature">
-            <div class="why-feature-icon">🌍</div>
+            <div class="why-feature-icon">ð</div>
             <div>
-              <h4>تغطية عالمية شاملة</h4>
-              <p>أكثر من 1,300 صالة ضيافة حول العالم تشمل مطارات المملكة العربية السعودية وجميع دول الخليج والعالم.</p>
+              <h4>ØªØºØ·ÙØ© Ø¹Ø§ÙÙÙØ© Ø´Ø§ÙÙØ©</h4>
+              <p>Ø£ÙØ«Ø± ÙÙ 1,300 ØµØ§ÙØ© Ø¶ÙØ§ÙØ© Ø­ÙÙ Ø§ÙØ¹Ø§ÙÙ ØªØ´ÙÙ ÙØ·Ø§Ø±Ø§Øª Ø§ÙÙÙÙÙØ© Ø§ÙØ¹Ø±Ø¨ÙØ© Ø§ÙØ³Ø¹ÙØ¯ÙØ© ÙØ¬ÙÙØ¹ Ø¯ÙÙ Ø§ÙØ®ÙÙØ¬ ÙØ§ÙØ¹Ø§ÙÙ.</p>
             </div>
           </div>
         </div>
@@ -1881,35 +1884,35 @@
 <section class="process-bg" id="process">
   <div class="section-inner">
     <div class="section-header" style="text-align: center; max-width: 600px; margin: 0 auto 4rem;">
-      <div class="section-tag">آلية العمل</div>
-      <h2 class="section-title">كيف <span style="color:var(--gold)">تفعّل بطاقتك؟</span></h2>
-      <p class="section-sub" style="margin: 0 auto;">عملية بسيطة من 5 خطوات تضمن لك دخول الصالة بكل سهولة وراحة.</p>
+      <div class="section-tag">Ø¢ÙÙØ© Ø§ÙØ¹ÙÙ</div>
+      <h2 class="section-title">ÙÙÙ <span style="color:var(--gold)">ØªÙØ¹ÙÙ Ø¨Ø·Ø§ÙØªÙØ</span></h2>
+      <p class="section-sub" style="margin: 0 auto;">Ø¹ÙÙÙØ© Ø¨Ø³ÙØ·Ø© ÙÙ 5 Ø®Ø·ÙØ§Øª ØªØ¶ÙÙ ÙÙ Ø¯Ø®ÙÙ Ø§ÙØµØ§ÙØ© Ø¨ÙÙ Ø³ÙÙÙØ© ÙØ±Ø§Ø­Ø©.</p>
     </div>
     <div class="process-steps">
       <div class="process-step">
         <div class="step-num">1</div>
-        <h4>اختر المنتج</h4>
-        <p>اختر بين Visa Airport أو Mastercard Travel Pass أو المشتريات</p>
+        <h4>Ø§Ø®ØªØ± Ø§ÙÙÙØªØ¬</h4>
+        <p>Ø§Ø®ØªØ± Ø¨ÙÙ Visa Airport Ø£Ù Mastercard Travel Pass Ø£Ù Ø§ÙÙØ´ØªØ±ÙØ§Øª</p>
       </div>
       <div class="process-step">
         <div class="step-num">2</div>
-        <h4>تواصل معنا</h4>
-        <p>أرسل طلبك عبر واتساب أو تيليغرام أو نموذج الموقع</p>
+        <h4>ØªÙØ§ØµÙ ÙØ¹ÙØ§</h4>
+        <p>Ø£Ø±Ø³Ù Ø·ÙØ¨Ù Ø¹Ø¨Ø± ÙØ§ØªØ³Ø§Ø¨ Ø£Ù ØªÙÙÙØºØ±Ø§Ù Ø£Ù ÙÙÙØ°Ø¬ Ø§ÙÙÙÙØ¹</p>
       </div>
       <div class="process-step">
         <div class="step-num">3</div>
-        <h4>أرسل البيانات</h4>
-        <p>أرسل البيانات المطلوبة لإتمام عملية التفعيل بأمان</p>
+        <h4>Ø£Ø±Ø³Ù Ø§ÙØ¨ÙØ§ÙØ§Øª</h4>
+        <p>Ø£Ø±Ø³Ù Ø§ÙØ¨ÙØ§ÙØ§Øª Ø§ÙÙØ·ÙÙØ¨Ø© ÙØ¥ØªÙØ§Ù Ø¹ÙÙÙØ© Ø§ÙØªÙØ¹ÙÙ Ø¨Ø£ÙØ§Ù</p>
       </div>
       <div class="process-step">
         <div class="step-num">4</div>
-        <h4>التفعيل الفوري</h4>
-        <p>نُفعّل بطاقتك خلال دقائق ونرسل لك تأكيد التفعيل</p>
+        <h4>Ø§ÙØªÙØ¹ÙÙ Ø§ÙÙÙØ±Ù</h4>
+        <p>ÙÙÙØ¹ÙÙ Ø¨Ø·Ø§ÙØªÙ Ø®ÙØ§Ù Ø¯ÙØ§Ø¦Ù ÙÙØ±Ø³Ù ÙÙ ØªØ£ÙÙØ¯ Ø§ÙØªÙØ¹ÙÙ</p>
       </div>
       <div class="process-step">
         <div class="step-num">5</div>
-        <h4>ادخل الصالة 🛫</h4>
-        <p>توجّه إلى الصالة واستمتع بتجربة سفر استثنائية</p>
+        <h4>Ø§Ø¯Ø®Ù Ø§ÙØµØ§ÙØ© ð«</h4>
+        <p>ØªÙØ¬ÙÙ Ø¥ÙÙ Ø§ÙØµØ§ÙØ© ÙØ§Ø³ØªÙØªØ¹ Ø¨ØªØ¬Ø±Ø¨Ø© Ø³ÙØ± Ø§Ø³ØªØ«ÙØ§Ø¦ÙØ©</p>
       </div>
     </div>
   </div>
@@ -1919,171 +1922,148 @@
 <section class="cta-section" id="contact">
   <div class="cta-inner">
     <div class="cta-left">
-      <div class="section-tag" style="background: rgba(201,168,76,0.15); color: var(--gold-light); border-color: rgba(201,168,76,0.3);">تواصل معنا</div>
-      <h2 class="section-title">لديك سؤال عن <span style="color:var(--gold)">بطاقتك؟</span></h2>
-      <p class="section-sub">نحن هنا للإجابة على جميع استفساراتك المتعلقة ببطاقات الفيزا والماستركارد وتفعيل الصالات. اختر موضوعك:</p>
+      <div class="section-tag" style="background: rgba(201,168,76,0.15); color: var(--gold-light); border-color: rgba(201,168,76,0.3);">ØªÙØ§ØµÙ ÙØ¹ÙØ§</div>
+      <h2 class="section-title">ÙØ¯ÙÙ Ø³Ø¤Ø§Ù Ø¹Ù <span style="color:var(--gold)">Ø¨Ø·Ø§ÙØªÙØ</span></h2>
+      <p class="section-sub">ÙØ­Ù ÙÙØ§ ÙÙØ¥Ø¬Ø§Ø¨Ø© Ø¹ÙÙ Ø¬ÙÙØ¹ Ø§Ø³ØªÙØ³Ø§Ø±Ø§ØªÙ Ø§ÙÙØªØ¹ÙÙØ© Ø¨Ø¨Ø·Ø§ÙØ§Øª Ø§ÙÙÙØ²Ø§ ÙØ§ÙÙØ§Ø³ØªØ±ÙØ§Ø±Ø¯ ÙØªÙØ¹ÙÙ Ø§ÙØµØ§ÙØ§Øª. Ø§Ø®ØªØ± ÙÙØ¶ÙØ¹Ù:</p>
 
       <div class="visa-topics">
-        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20تفعيل%20Visa%20Airport%20Companion" target="_blank" class="visa-topic">
-          <div class="vt-icon">✈️</div>
-          <div class="vt-text">تفعيل Visa Airport Companion</div>
-          <div class="vt-arrow">←</div>
+        <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±%20Ø¹Ù%20ØªÙØ¹ÙÙ%20Visa%20Airport%20Companion" target="_blank" class="visa-topic">
+          <div class="vt-icon">âï¸</div>
+          <div class="vt-text">ØªÙØ¹ÙÙ Visa Airport Companion</div>
+          <div class="vt-arrow">â</div>
         </a>
-        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20تفعيل%20Mastercard%20Travel%20Pass" target="_blank" class="visa-topic">
-          <div class="vt-icon">🃏</div>
-          <div class="vt-text">تفعيل Mastercard Travel Pass</div>
-          <div class="vt-arrow">←</div>
+        <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±%20Ø¹Ù%20ØªÙØ¹ÙÙ%20Mastercard%20Travel%20Pass" target="_blank" class="visa-topic">
+          <div class="vt-icon">ð</div>
+          <div class="vt-text">ØªÙØ¹ÙÙ Mastercard Travel Pass</div>
+          <div class="vt-arrow">â</div>
         </a>
-        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20الصالات%20المتاحة%20في%20المطارات" target="_blank" class="visa-topic">
-          <div class="vt-icon">🏛️</div>
-          <div class="vt-text">الاستعلام عن الصالات المتاحة</div>
-          <div class="vt-arrow">←</div>
+        <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±%20Ø¹Ù%20Ø§ÙØµØ§ÙØ§Øª%20Ø§ÙÙØªØ§Ø­Ø©%20ÙÙ%20Ø§ÙÙØ·Ø§Ø±Ø§Øª" target="_blank" class="visa-topic">
+          <div class="vt-icon">ðï¸</div>
+          <div class="vt-text">Ø§ÙØ§Ø³ØªØ¹ÙØ§Ù Ø¹Ù Ø§ÙØµØ§ÙØ§Øª Ø§ÙÙØªØ§Ø­Ø©</div>
+          <div class="vt-arrow">â</div>
         </a>
-        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20المشتريات%20برصيد%20البطاقة" target="_blank" class="visa-topic">
-          <div class="vt-icon">🛍️</div>
-          <div class="vt-text">المشتريات برصيد البطاقة</div>
-          <div class="vt-arrow">←</div>
+        <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±%20Ø¹Ù%20Ø§ÙÙØ´ØªØ±ÙØ§Øª%20Ø¨Ø±ØµÙØ¯%20Ø§ÙØ¨Ø·Ø§ÙØ©" target="_blank" class="visa-topic">
+          <div class="vt-icon">ðï¸</div>
+          <div class="vt-text">Ø§ÙÙØ´ØªØ±ÙØ§Øª Ø¨Ø±ØµÙØ¯ Ø§ÙØ¨Ø·Ø§ÙØ©</div>
+          <div class="vt-arrow">â</div>
         </a>
-        <a href="https://wa.me/966581435538?text=مرحباً،%20لدي%20مشكلة%20في%20التفعيل%20أو%20الدخول%20للصالة" target="_blank" class="visa-topic">
-          <div class="vt-icon">🔧</div>
-          <div class="vt-text">مشكلة في التفعيل أو الدخول</div>
-          <div class="vt-arrow">←</div>
+        <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20ÙØ¯Ù%20ÙØ´ÙÙØ©%20ÙÙ%20Ø§ÙØªÙØ¹ÙÙ%20Ø£Ù%20Ø§ÙØ¯Ø®ÙÙ%20ÙÙØµØ§ÙØ©" target="_blank" class="visa-topic">
+          <div class="vt-icon">ð§</div>
+          <div class="vt-text">ÙØ´ÙÙØ© ÙÙ Ø§ÙØªÙØ¹ÙÙ Ø£Ù Ø§ÙØ¯Ø®ÙÙ</div>
+          <div class="vt-arrow">â</div>
         </a>
-        <a href="https://wa.me/966581435538?text=مرحباً،%20لدي%20استفسار%20عن%20خدمات%20Digital%20Card" target="_blank" class="visa-topic">
-          <div class="vt-icon">💬</div>
-          <div class="vt-text">استفسار عام عن الخدمة</div>
-          <div class="vt-arrow">←</div>
+        <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20ÙØ¯Ù%20Ø§Ø³ØªÙØ³Ø§Ø±%20Ø¹Ù%20Ø®Ø¯ÙØ§Øª%20Digital%20Card" target="_blank" class="visa-topic">
+          <div class="vt-icon">ð¬</div>
+          <div class="vt-text">Ø§Ø³ØªÙØ³Ø§Ø± Ø¹Ø§Ù Ø¹Ù Ø§ÙØ®Ø¯ÙØ©</div>
+          <div class="vt-arrow">â</div>
         </a>
       </div>
     </div>
 
     <div class="contact-form">
-      <h3>📩 أرسل استفسارك</h3>
+      <h3>ð© Ø£Ø±Ø³Ù Ø§Ø³ØªÙØ³Ø§Ø±Ù</h3>
       <form id="contact-form" action="https://formspree.io/f/mnjwrolj" method="POST">
         <div class="form-group">
-          <label>الاسم</label>
-          <input type="text" name="الاسم" id="f-name" placeholder="اسمك الكريم" required>
+          <label>Ø§ÙØ§Ø³Ù</label>
+          <input type="text" name="Ø§ÙØ§Ø³Ù" id="f-name" placeholder="Ø§Ø³ÙÙ Ø§ÙÙØ±ÙÙ" required>
         </div>
         <div class="form-group">
-          <label>رقم الجوال / واتساب</label>
-          <input type="tel" name="الجوال" id="f-phone" placeholder="+966 5X XXX XXXX">
+          <label>Ø±ÙÙ Ø§ÙØ¬ÙØ§Ù / ÙØ§ØªØ³Ø§Ø¨</label>
+          <input type="tel" name="Ø§ÙØ¬ÙØ§Ù" id="f-phone" placeholder="+966 5X XXX XXXX">
         </div>
         <div class="form-group">
-          <label>موضوع الاستفسار</label>
-          <select name="الموضوع" id="f-subject" required>
-            <option value="">اختر الموضوع...</option>
-            <option>تفعيل Visa Airport Companion</option>
-            <option>تفعيل Mastercard Travel Pass</option>
-            <option>الاستعلام عن الصالات المتاحة</option>
-            <option>المشتريات برصيد البطاقة</option>
-            <option>مشكلة في التفعيل أو الدخول</option>
-            <option>استفسار عام</option>
+          <label>ÙÙØ¶ÙØ¹ Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±</label>
+          <select name="Ø§ÙÙÙØ¶ÙØ¹" id="f-subject" required>
+            <option value="">Ø§Ø®ØªØ± Ø§ÙÙÙØ¶ÙØ¹...</option>
+            <option>ØªÙØ¹ÙÙ Visa Airport Companion</option>
+            <option>ØªÙØ¹ÙÙ Mastercard Travel Pass</option>
+            <option>Ø§ÙØ§Ø³ØªØ¹ÙØ§Ù Ø¹Ù Ø§ÙØµØ§ÙØ§Øª Ø§ÙÙØªØ§Ø­Ø©</option>
+            <option>Ø§ÙÙØ´ØªØ±ÙØ§Øª Ø¨Ø±ØµÙØ¯ Ø§ÙØ¨Ø·Ø§ÙØ©</option>
+            <option>ÙØ´ÙÙØ© ÙÙ Ø§ÙØªÙØ¹ÙÙ Ø£Ù Ø§ÙØ¯Ø®ÙÙ</option>
+            <option>Ø§Ø³ØªÙØ³Ø§Ø± Ø¹Ø§Ù</option>
           </select>
         </div>
         <div class="form-group">
-          <label>تفاصيل الاستفسار</label>
-          <textarea name="التفاصيل" id="f-msg" placeholder="اشرح استفسارك أو طلبك بالتفصيل..."></textarea>
+          <label>ØªÙØ§ØµÙÙ Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±</label>
+          <textarea name="Ø§ÙØªÙØ§ØµÙÙ" id="f-msg" placeholder="Ø§Ø´Ø±Ø­ Ø§Ø³ØªÙØ³Ø§Ø±Ù Ø£Ù Ø·ÙØ¨Ù Ø¨Ø§ÙØªÙØµÙÙ..."></textarea>
         </div>
-        <input type="hidden" name="_subject" value="طلب جديد من موقع Digital Card">
+        <input type="hidden" name="_subject" value="Ø·ÙØ¨ Ø¬Ø¯ÙØ¯ ÙÙ ÙÙÙØ¹ Digital Card">
         <input type="hidden" name="_language" value="ar">
-        <button type="submit" class="form-submit" id="submit-btn">إرسال الاستفسار ←</button>
+        <button type="submit" class="form-submit" id="submit-btn">Ø¥Ø±Ø³Ø§Ù Ø§ÙØ§Ø³ØªÙØ³Ø§Ø± â</button>
       </form>
       <div id="form-success" style="display:none; text-align:center; padding:1.5rem; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); border-radius:12px; margin-top:1rem;">
-        <div style="font-size:2rem; margin-bottom:8px;">✅</div>
-        <div style="color:#10B981; font-size:16px; font-weight:700;">تم إرسال استفسارك بنجاح!</div>
-        <div style="color:rgba(250,250,248,0.6); font-size:13px; margin-top:4px;">سنتواصل معك قريباً على واتساب أو البريد</div>
+        <div style="font-size:2rem; margin-bottom:8px;">â</div>
+        <div style="color:#10B981; font-size:16px; font-weight:700;">ØªÙ Ø¥Ø±Ø³Ø§Ù Ø§Ø³ØªÙØ³Ø§Ø±Ù Ø¨ÙØ¬Ø§Ø­!</div>
+        <div style="color:rgba(250,250,248,0.6); font-size:13px; margin-top:4px;">Ø³ÙØªÙØ§ØµÙ ÙØ¹Ù ÙØ±ÙØ¨Ø§Ù Ø¹ÙÙ ÙØ§ØªØ³Ø§Ø¨ Ø£Ù Ø§ÙØ¨Ø±ÙØ¯</div>
       </div>
       <div style="text-align:center; margin-top:14px; display:flex; gap:10px; justify-content:center;">
-        <a href="https://wa.me/966581435538?text=مرحباً،%20أريد%20الاستفسار%20عن%20خدمات%20Digital%20Card" target="_blank" style="color:#25D366; font-size:13px; text-decoration:none; display:flex; align-items:center; gap:4px;">💬 أو تواصل عبر واتساب</a>
+        <a href="https://wa.me/966581435538?text=ÙØ±Ø­Ø¨Ø§ÙØ%20Ø£Ø±ÙØ¯%20Ø§ÙØ§Ø³ØªÙØ³Ø§Ø±%20Ø¹Ù%20Ø®Ø¯ÙØ§Øª%20Digital%20Card" target="_blank" style="color:#25D366; font-size:13px; text-decoration:none; display:flex; align-items:center; gap:4px;">ð¬ Ø£Ù ØªÙØ§ØµÙ Ø¹Ø¨Ø± ÙØ§ØªØ³Ø§Ø¨</a>
         <span style="color:rgba(250,250,248,0.3);">|</span>
-        <a href="mailto:salam6169@gmail.com" style="color:var(--gold-light); font-size:13px; text-decoration:none;">✉️ البريد الإلكتروني</a>
+        <a href="mailto:salam6169@gmail.com" style="color:var(--gold-light); font-size:13px; text-decoration:none;">âï¸ Ø§ÙØ¨Ø±ÙØ¯ Ø§ÙØ¥ÙÙØªØ±ÙÙÙ</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ========== AUTH MODAL ========== -->
+<div id="authModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+  <div style="background:#1a1a2e; border-radius:16px; padding:2rem; width:90%; max-width:420px; position:relative; border:1px solid rgba(212,175,55,0.3);">
+    <button onclick="closeAuthModal()" style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">&times;</button>
+    <div style="display:flex; gap:0; margin-bottom:1.5rem; border-radius:8px; overflow:hidden; border:1px solid rgba(212,175,55,0.3);">
+      <button id="tab-login" class="auth-tab active" onclick="showAuthTab('login')" style="flex:1; padding:0.75rem; border:none; cursor:pointer; font-size:0.95rem; font-weight:600; background:rgba(212,175,55,0.2); color:#d4af37; transition:all 0.3s;">تسجيل الدخول</button>
+      <button id="tab-register" class="auth-tab" onclick="showAuthTab('register')" style="flex:1; padding:0.75rem; border:none; cursor:pointer; font-size:0.95rem; font-weight:600; background:transparent; color:#aaa; transition:all 0.3s;">إنشاء حساب</button>
+    </div>
+    <div id="form-login" class="auth-form active">
+      <h3 style="color:#d4af37; text-align:center; margin-bottom:1.2rem;">تسجيل الدخول</h3>
+      <input id="login-email" type="email" placeholder="البريد الإلكتروني" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <input id="login-password" type="password" placeholder="كلمة المرور" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <div id="login-message" class="auth-message" style="text-align:center; padding:0.5rem; border-radius:6px; margin-bottom:0.8rem; font-size:0.9rem;"></div>
+      <button onclick="loginUser()" style="width:100%; padding:0.9rem; background:linear-gradient(135deg,#d4af37,#b8962a); color:#000; border:none; border-radius:8px; font-size:1rem; font-weight:700; cursor:pointer; margin-bottom:0.8rem;">دخول</button>
+      <div style="text-align:center;"><a href="#" onclick="resetPassword(); return false;" style="color:#d4af37; font-size:0.85rem; text-decoration:none;">نسيت كلمة المرور؟</a></div>
+    </div>
+    <div id="form-register" class="auth-form" style="display:none;">
+      <h3 style="color:#d4af37; text-align:center; margin-bottom:1.2rem;">إنشاء حساب جديد</h3>
+      <input id="reg-name" type="text" placeholder="الاسم الكامل" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;">
+      <input id="reg-email" type="email" placeholder="البريد الإلكتروني" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <input id="reg-phone" type="tel" placeholder="رقم الجوال" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <input id="reg-password" type="password" placeholder="كلمة المرور" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <input id="reg-confirm-password" type="password" placeholder="تأكيد كلمة المرور" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <div id="reg-message" class="auth-message" style="text-align:center; padding:0.5rem; border-radius:6px; margin-bottom:0.8rem; font-size:0.9rem;"></div>
+      <button onclick="registerUser()" style="width:100%; padding:0.9rem; background:linear-gradient(135deg,#d4af37,#b8962a); color:#000; border:none; border-radius:8px; font-size:1rem; font-weight:700; cursor:pointer;">إنشاء الحساب</button>
+    </div>
+  </div>
+</div>
+
 <!-- ========== PROFILE SECTION ========== -->
 <section id="profile">
-  <div class="profile-container">
-
-    <div class="profile-header">
-      <div class="profile-avatar" id="profileAvatar">أح</div>
-      <div class="profile-info">
-        <h2 id="profileName">أحمد محمد الراشد</h2>
-        <div class="profile-id" id="profileIdDisplay">رقم العضوية: DC-2024-00847</div>
-        <span class="profile-status" data-ar="نشط" data-en="Active">نشط</span>
+  <div id="guest-section" class="profile-container" style="text-align:center; padding:4rem 1rem;">
+    <div style="font-size:4rem; margin-bottom:1.5rem;">&#128274;</div>
+    <h2 style="color:#d4af37; font-size:1.8rem; margin-bottom:1rem;">ملفك الشخصي</h2>
+    <p style="color:rgba(255,255,255,0.7); margin-bottom:2rem; font-size:1.05rem;">سجّل دخولك أو أنشئ حساباً للوصول إلى ملفك الشخصي</p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <button onclick="openAuthModal('login')" style="padding:0.9rem 2rem; background:linear-gradient(135deg,#d4af37,#b8962a); color:#000; border:none; border-radius:10px; font-size:1rem; font-weight:700; cursor:pointer;">تسجيل الدخول</button>
+      <button onclick="openAuthModal('register')" style="padding:0.9rem 2rem; background:transparent; color:#d4af37; border:2px solid #d4af37; border-radius:10px; font-size:1rem; font-weight:700; cursor:pointer;">إنشاء حساب جديد</button>
+    </div>
+  </div>
+  <div id="profile-section" class="profile-container" style="display:none; padding:2rem 1rem; max-width:600px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:2rem;">
+      <div style="width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,#d4af37,#b8962a); display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1rem; color:#000; font-weight:700;">&#128100;</div>
+      <h2 id="profile-name" style="color:#d4af37; font-size:1.5rem; margin-bottom:0.3rem;"></h2>
+      <p id="profile-email-display" style="color:rgba(255,255,255,0.6); font-size:0.95rem;" dir="ltr"></p>
+    </div>
+    <div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:1.5rem; border:1px solid rgba(212,175,55,0.2);">
+      <h3 style="color:#d4af37; margin-bottom:1.2rem; font-size:1.1rem;">تعديل الملف الشخصي</h3>
+      <label style="color:rgba(255,255,255,0.7); font-size:0.85rem; display:block; margin-bottom:0.3rem;">رقم الجوال</label>
+      <input id="profile-phone" type="tel" placeholder="رقم الجوال" style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <label style="color:rgba(255,255,255,0.7); font-size:0.85rem; display:block; margin-bottom:0.3rem;">كلمة المرور الجديدة</label>
+      <input id="profile-new-password" type="password" placeholder="كلمة المرور الجديدة (اتركها فارغة إن لم تريد تغييرها)" style="width:100%; padding:0.8rem; margin-bottom:0.8rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <input id="profile-confirm-password" type="password" placeholder="تأكيد كلمة المرور الجديدة" style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid rgba(212,175,55,0.3); background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; box-sizing:border-box;" dir="ltr">
+      <div id="profile-message" class="auth-message" style="text-align:center; padding:0.5rem; border-radius:6px; margin-bottom:0.8rem; font-size:0.9rem;"></div>
+      <div style="display:flex; gap:1rem;">
+        <button onclick="updateProfile()" style="flex:1; padding:0.9rem; background:linear-gradient(135deg,#d4af37,#b8962a); color:#000; border:none; border-radius:8px; font-size:0.95rem; font-weight:700; cursor:pointer;">حفظ التغييرات</button>
+        <button onclick="logoutUser()" style="flex:1; padding:0.9rem; background:transparent; color:#ff6b6b; border:2px solid #ff6b6b; border-radius:8px; font-size:0.95rem; font-weight:700; cursor:pointer;">تسجيل الخروج</button>
       </div>
     </div>
-
-    <div class="profile-grid">
-      <div class="profile-card">
-        <div class="profile-card-title" data-ar="نوع الاشتراك" data-en="Membership Type">نوع الاشتراك</div>
-        <div class="profile-card-value gold" data-ar="بلاتيني — سنوي" data-en="Platinum — Annual">بلاتيني — سنوي</div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-card-title" data-ar="تاريخ الانضمام" data-en="Join Date">تاريخ الانضمام</div>
-        <div class="profile-card-value">15 يناير 2024</div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-card-title" data-ar="تاريخ الانتهاء" data-en="Expiry Date">تاريخ الانتهاء</div>
-        <div class="profile-card-value">15 يناير 2025</div>
-        <div class="membership-bar-wrap">
-          <div class="membership-bar" style="width: 62%"></div>
-        </div>
-        <div style="font-size:0.75rem; color: var(--gray-mid); margin-top:6px;" data-ar="62% من مدة الاشتراك مكتملة" data-en="62% of membership completed">62% من مدة الاشتراك مكتملة</div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-card-title" data-ar="زيارات الصالات" data-en="Lounge Visits">زيارات الصالات</div>
-        <div class="profile-card-value gold">18 <span style="font-size:0.9rem;color:var(--gray-mid);" data-ar="زيارة هذا العام" data-en="visits this year">زيارة هذا العام</span></div>
-      </div>
-    </div>
-
-    <!-- QR Code -->
-    <div class="qr-section">
-      <div class="qr-title" data-ar="بطاقتك الرقمية — QR Code" data-en="Your Digital Card — QR Code">بطاقتك الرقمية — QR Code</div>
-      <div class="qr-sub" data-ar="أرِ هذا الرمز عند الدخول إلى أي صالة مشمولة" data-en="Show this code when entering any covered lounge">أرِ هذا الرمز عند الدخول إلى أي صالة مشمولة</div>
-      <div class="qr-code-box">
-        <div id="qrcode"></div>
-      </div>
-      <br>
-      <button class="qr-download-btn" onclick="downloadQR()">
-        ⬇ <span data-ar="تحميل QR Code" data-en="Download QR Code">تحميل QR Code</span>
-      </button>
-    </div>
-
-    <!-- Visit History -->
-    <div class="visit-history">
-      <div class="visit-history-title" data-ar="📋 سجل الزيارات الأخيرة" data-en="📋 Recent Visit History">📋 سجل الزيارات الأخيرة</div>
-      <div class="visit-item">
-        <div>
-          <div class="visit-lounge" data-ar="صالة الرياض — مطار الملك خالد" data-en="Riyadh Lounge — King Khalid Airport">صالة الرياض — مطار الملك خالد</div>
-          <div class="visit-date">12 مايو 2024</div>
-        </div>
-        <span class="visit-badge">✓ مدخل</span>
-      </div>
-      <div class="visit-item">
-        <div>
-          <div class="visit-lounge" data-ar="صالة جدة — مطار الملك عبدالعزيز" data-en="Jeddah Lounge — King Abdulaziz Airport">صالة جدة — مطار الملك عبدالعزيز</div>
-          <div class="visit-date">28 أبريل 2024</div>
-        </div>
-        <span class="visit-badge">✓ مدخل</span>
-      </div>
-      <div class="visit-item">
-        <div>
-          <div class="visit-lounge" data-ar="صالة دبي — مطار دبي الدولي" data-en="Dubai Lounge — Dubai International Airport">صالة دبي — مطار دبي الدولي</div>
-          <div class="visit-date">10 أبريل 2024</div>
-        </div>
-        <span class="visit-badge">✓ مدخل</span>
-      </div>
-      <div class="visit-item">
-        <div>
-          <div class="visit-lounge" data-ar="صالة الدوحة — مطار حمد الدولي" data-en="Doha Lounge — Hamad International Airport">صالة الدوحة — مطار حمد الدولي</div>
-          <div class="visit-date">2 مارس 2024</div>
-        </div>
-        <span class="visit-badge">✓ مدخل</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -2095,16 +2075,16 @@
   <div class="payment-inner">
 
     <div class="payment-header">
-      <div class="payment-tag" data-ar="طرق الدفع" data-en="Payment Methods">طرق الدفع</div>
-      <h2 class="payment-title">ادفع بالطريقة <span>التي تناسبك</span></h2>
-      <p class="payment-sub" data-ar="جميع المدفوعات بالدولار الأمريكي — نقبل أحدث وسائل الدفع المعتمدة في المملكة العربية السعودية والعالم" data-en="All payments in USD — We accept the latest payment methods approved in Saudi Arabia and worldwide">جميع المدفوعات بالدولار الأمريكي — نقبل أحدث وسائل الدفع المعتمدة في المملكة العربية السعودية والعالم</p>
+      <div class="payment-tag" data-ar="Ø·Ø±Ù Ø§ÙØ¯ÙØ¹" data-en="Payment Methods">Ø·Ø±Ù Ø§ÙØ¯ÙØ¹</div>
+      <h2 class="payment-title">Ø§Ø¯ÙØ¹ Ø¨Ø§ÙØ·Ø±ÙÙØ© <span>Ø§ÙØªÙ ØªÙØ§Ø³Ø¨Ù</span></h2>
+      <p class="payment-sub" data-ar="Ø¬ÙÙØ¹ Ø§ÙÙØ¯ÙÙØ¹Ø§Øª Ø¨Ø§ÙØ¯ÙÙØ§Ø± Ø§ÙØ£ÙØ±ÙÙÙ â ÙÙØ¨Ù Ø£Ø­Ø¯Ø« ÙØ³Ø§Ø¦Ù Ø§ÙØ¯ÙØ¹ Ø§ÙÙØ¹ØªÙØ¯Ø© ÙÙ Ø§ÙÙÙÙÙØ© Ø§ÙØ¹Ø±Ø¨ÙØ© Ø§ÙØ³Ø¹ÙØ¯ÙØ© ÙØ§ÙØ¹Ø§ÙÙ" data-en="All payments in USD â We accept the latest payment methods approved in Saudi Arabia and worldwide">Ø¬ÙÙØ¹ Ø§ÙÙØ¯ÙÙØ¹Ø§Øª Ø¨Ø§ÙØ¯ÙÙØ§Ø± Ø§ÙØ£ÙØ±ÙÙÙ â ÙÙØ¨Ù Ø£Ø­Ø¯Ø« ÙØ³Ø§Ø¦Ù Ø§ÙØ¯ÙØ¹ Ø§ÙÙØ¹ØªÙØ¯Ø© ÙÙ Ø§ÙÙÙÙÙØ© Ø§ÙØ¹Ø±Ø¨ÙØ© Ø§ÙØ³Ø¹ÙØ¯ÙØ© ÙØ§ÙØ¹Ø§ÙÙ</p>
     </div>
 
     <div class="payment-categories">
 
-      <!-- بطاقات بنكية -->
+      <!-- Ø¨Ø·Ø§ÙØ§Øª Ø¨ÙÙÙØ© -->
       <div>
-        <div class="payment-category-title" data-ar="بطاقات بنكية" data-en="Bank Cards">بطاقات بنكية</div>
+        <div class="payment-category-title" data-ar="Ø¨Ø·Ø§ÙØ§Øª Ø¨ÙÙÙØ©" data-en="Bank Cards">Ø¨Ø·Ø§ÙØ§Øª Ø¨ÙÙÙØ©</div>
         <div class="payment-grid">
 
           <div class="pay-card visa-pay">
@@ -2113,34 +2093,34 @@
           </div>
 
           <div class="pay-card master-pay">
-            <div class="pay-icon">🔴🟠</div>
+            <div class="pay-icon">ð´ð </div>
             <div class="pay-name">Mastercard</div>
           </div>
 
           </div>
       </div>
 
-      <!-- تقسيط بدون فوائد -->
-      yments are in US Dollars ($) — Exchange rate is calculated automatically when paying via your bank card or digital wallet">جميع الأسعار والمدفوعات بالدولار الأمريكي ($) — سعر الصرف يُحتسب تلقائياً عند الدفع عبر بطاقتك البنكية أو محفظتك الإلكترونية</div>
+      <!-- ØªÙØ³ÙØ· Ø¨Ø¯ÙÙ ÙÙØ§Ø¦Ø¯ -->
+      yments are in US Dollars ($) â Exchange rate is calculated automatically when paying via your bank card or digital wallet">Ø¬ÙÙØ¹ Ø§ÙØ£Ø³Ø¹Ø§Ø± ÙØ§ÙÙØ¯ÙÙØ¹Ø§Øª Ø¨Ø§ÙØ¯ÙÙØ§Ø± Ø§ÙØ£ÙØ±ÙÙÙ ($) â Ø³Ø¹Ø± Ø§ÙØµØ±Ù ÙÙØ­ØªØ³Ø¨ ØªÙÙØ§Ø¦ÙØ§Ù Ø¹ÙØ¯ Ø§ÙØ¯ÙØ¹ Ø¹Ø¨Ø± Ø¨Ø·Ø§ÙØªÙ Ø§ÙØ¨ÙÙÙØ© Ø£Ù ÙØ­ÙØ¸ØªÙ Ø§ÙØ¥ÙÙØªØ±ÙÙÙØ©</div>
     </div>
 
     <!-- Security Badges -->
     <div class="security-badges">
       <div class="sec-badge">
-        <span class="sec-badge-icon">🔒</span>
-        <span data-ar="دفع آمن 100%" data-en="100% Secure Payment">دفع آمن 100%</span>
+        <span class="sec-badge-icon">ð</span>
+        <span data-ar="Ø¯ÙØ¹ Ø¢ÙÙ 100%" data-en="100% Secure Payment">Ø¯ÙØ¹ Ø¢ÙÙ 100%</span>
       </div>
       <div class="sec-badge">
-        <span class="sec-badge-icon">🛡️</span>
-        <span data-ar="حماية SSL" data-en="SSL Protection">حماية SSL</span>
+        <span class="sec-badge-icon">ð¡ï¸</span>
+        <span data-ar="Ø­ÙØ§ÙØ© SSL" data-en="SSL Protection">Ø­ÙØ§ÙØ© SSL</span>
       </div>
       <div class="sec-badge">
-        <span class="sec-badge-icon">✅</span>
-        <span data-ar="معتمد بالمملكة العربية السعودية" data-en="Approved in Saudi Arabia">معتمد بالمملكة العربية السعودية</span>
+        <span class="sec-badge-icon">â</span>
+        <span data-ar="ÙØ¹ØªÙØ¯ Ø¨Ø§ÙÙÙÙÙØ© Ø§ÙØ¹Ø±Ø¨ÙØ© Ø§ÙØ³Ø¹ÙØ¯ÙØ©" data-en="Approved in Saudi Arabia">ÙØ¹ØªÙØ¯ Ø¨Ø§ÙÙÙÙÙØ© Ø§ÙØ¹Ø±Ø¨ÙØ© Ø§ÙØ³Ø¹ÙØ¯ÙØ©</span>
       </div>
       <div class="sec-badge">
-        <span class="sec-badge-icon">🌍</span>
-        <span data-ar="مقبول عالمياً" data-en="Accepted Worldwide">مقبول عالمياً</span>
+        <span class="sec-badge-icon">ð</span>
+        <span data-ar="ÙÙØ¨ÙÙ Ø¹Ø§ÙÙÙØ§Ù" data-en="Accepted Worldwide">ÙÙØ¨ÙÙ Ø¹Ø§ÙÙÙØ§Ù</span>
       </div>
     </div>
 
@@ -2154,7 +2134,7 @@
         <div class="logo-icon">DC</div>
         <div class="logo-text">Digital Card<span>Airport Lounge Access</span></div>
       </div>
-      <p>متخصصون في تفعيل زيارات صالات الضيافة في المطارات عبر Visa Airport وMastercard Travel Pass بأسعار لا تُنافَس.</p>
+      <p>ÙØªØ®ØµØµÙÙ ÙÙ ØªÙØ¹ÙÙ Ø²ÙØ§Ø±Ø§Øª ØµØ§ÙØ§Øª Ø§ÙØ¶ÙØ§ÙØ© ÙÙ Ø§ÙÙØ·Ø§Ø±Ø§Øª Ø¹Ø¨Ø± Visa Airport ÙMastercard Travel Pass Ø¨Ø£Ø³Ø¹Ø§Ø± ÙØ§ ØªÙÙØ§ÙÙØ³.</p>
       <div class="footer-social">
         <a href="#" class="social-btn">wa</a>
         <a href="#" class="social-btn">tg</a>
@@ -2163,35 +2143,35 @@
       </div>
     </div>
     <div class="footer-col">
-      <h5>المنتجات</h5>
+      <h5>Ø§ÙÙÙØªØ¬Ø§Øª</h5>
       <ul class="footer-links">
         <li><a href="#">Visa Airport - $100</a></li>
         <li><a href="#">Mastercard Travel Pass - $5</a></li>
-        <li><a href="#">مشتريات - $1</a></li>
+        <li><a href="#">ÙØ´ØªØ±ÙØ§Øª - $1</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h5>الدعم</h5>
+      <h5>Ø§ÙØ¯Ø¹Ù</h5>
       <ul class="footer-links">
-        <li><a href="#">خدمة العملاء</a></li>
-        <li><a href="#">الأسئلة الشائعة</a></li>
-        <li><a href="#">الصالات المتاحة</a></li>
-        <li><a href="#">تتبع طلبك</a></li>
+        <li><a href="#">Ø®Ø¯ÙØ© Ø§ÙØ¹ÙÙØ§Ø¡</a></li>
+        <li><a href="#">Ø§ÙØ£Ø³Ø¦ÙØ© Ø§ÙØ´Ø§Ø¦Ø¹Ø©</a></li>
+        <li><a href="#">Ø§ÙØµØ§ÙØ§Øª Ø§ÙÙØªØ§Ø­Ø©</a></li>
+        <li><a href="#">ØªØªØ¨Ø¹ Ø·ÙØ¨Ù</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h5>الشركة</h5>
+      <h5>Ø§ÙØ´Ø±ÙØ©</h5>
       <ul class="footer-links">
-        <li><a href="#">من نحن</a></li>
-        <li><a href="#">سياسة الخصوصية</a></li>
-        <li><a href="#">الشروط والأحكام</a></li>
-        <li><a href="#">تواصل معنا</a></li>
+        <li><a href="#">ÙÙ ÙØ­Ù</a></li>
+        <li><a href="#">Ø³ÙØ§Ø³Ø© Ø§ÙØ®ØµÙØµÙØ©</a></li>
+        <li><a href="#">Ø§ÙØ´Ø±ÙØ· ÙØ§ÙØ£Ø­ÙØ§Ù</a></li>
+        <li><a href="#">ØªÙØ§ØµÙ ÙØ¹ÙØ§</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Digital Card. جميع الحقوق محفوظة.</span>
-    <span>Visa Airport • Mastercard Travel Pass</span>
+    <span>Â© 2025 Digital Card. Ø¬ÙÙØ¹ Ø§ÙØ­ÙÙÙ ÙØ­ÙÙØ¸Ø©.</span>
+    <span>Visa Airport â¢ Mastercard Travel Pass</span>
   </div>
 </footer>
 
@@ -2225,13 +2205,13 @@
     observer.observe(el);
   });
 
-  // Formspree - إرسال بدون إعادة تحميل الصفحة
+  // Formspree - Ø¥Ø±Ø³Ø§Ù Ø¨Ø¯ÙÙ Ø¥Ø¹Ø§Ø¯Ø© ØªØ­ÙÙÙ Ø§ÙØµÙØ­Ø©
   const form = document.getElementById('contact-form');
   if (form) {
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
-      btn.textContent = '⏳ جاري الإرسال...';
+      btn.textContent = 'â³ Ø¬Ø§Ø±Ù Ø§ÙØ¥Ø±Ø³Ø§Ù...';
       btn.disabled = true;
 
       try {
@@ -2245,11 +2225,11 @@
           form.style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
         } else {
-          btn.textContent = '❌ حدث خطأ، حاول مجدداً';
+          btn.textContent = 'â Ø­Ø¯Ø« Ø®Ø·Ø£Ø Ø­Ø§ÙÙ ÙØ¬Ø¯Ø¯Ø§Ù';
           btn.disabled = false;
         }
       } catch {
-        btn.textContent = '❌ تحقق من الاتصال وأعد المحاولة';
+        btn.textContent = 'â ØªØ­ÙÙ ÙÙ Ø§ÙØ§ØªØµØ§Ù ÙØ£Ø¹Ø¯ Ø§ÙÙØ­Ø§ÙÙØ©';
         btn.disabled = false;
       }
     });
@@ -2267,13 +2247,13 @@ function toggleLang() {
   if (currentLang === 'en') {
     html.setAttribute('lang', 'en');
     html.setAttribute('dir', 'ltr');
-    btn.textContent = 'عر';
+    btn.textContent = 'Ø¹Ø±';
     document.title = 'Digital Card - Airport Lounge Access';
   } else {
     html.setAttribute('lang', 'ar');
     html.setAttribute('dir', 'rtl');
     btn.textContent = 'EN';
-    document.title = 'Digital Card - تفعيل بطاقات الصالات';
+    document.title = 'Digital Card - ØªÙØ¹ÙÙ Ø¨Ø·Ø§ÙØ§Øª Ø§ÙØµØ§ÙØ§Øª';
   }
   
   // Update all elements with data-ar / data-en
@@ -2328,7 +2308,7 @@ function generateQR() {
   
   const memberData = JSON.stringify({
     id: 'DC-2024-00847',
-    name: 'أحمد محمد الراشد',
+    name: 'Ø£Ø­ÙØ¯ ÙØ­ÙØ¯ Ø§ÙØ±Ø§Ø´Ø¯',
     type: 'Platinum',
     expiry: '2025-01-15',
     valid: true
@@ -2344,7 +2324,7 @@ function generateQR() {
       correctLevel: QRCode.CorrectLevel.H
     });
   } catch(e) {
-    qrContainer.innerHTML = '<div style="padding:20px;color:#888;font-size:13px;">QR Code غير متاح في هذا المتصفح</div>';
+    qrContainer.innerHTML = '<div style="padding:20px;color:#888;font-size:13px;">QR Code ØºÙØ± ÙØªØ§Ø­ ÙÙ ÙØ°Ø§ Ø§ÙÙØªØµÙØ­</div>';
   }
 }
 
@@ -2364,5 +2344,6 @@ document.querySelectorAll('nav a:not(.nav-profile-btn)').forEach(link => {
   });
 });
 </script>
-</body>
+
+<script src="auth.js"></script></body>
 </html>
